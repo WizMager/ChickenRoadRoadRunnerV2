@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Camera;
 using Car;
 using Db;
@@ -48,9 +46,7 @@ public class Bootstrap : MonoBehaviour
         _cameraFollow = new CameraFollow(_camera, _chicken.transform, 3.080001f);
         
         _gameHudWindow.Initialize(_gameData, _checkpoints.Count - 1);
-        _minigamePopupWindow.Initialize(_audioService);
         _winPopupWindow.Initialize(_audioService);
-        _minigamePopupWindow.OnCompleteMiniGame += OnCompleteMiniGame;
     }
 
     private void OnCompleteMiniGame()
@@ -61,7 +57,7 @@ public class Bootstrap : MonoBehaviour
 
     private void OnLastCheckpointReached()
     {
-		_minigamePopupWindow.PlaySequence();
+		
     }
 
     private void OnChickenHit()
