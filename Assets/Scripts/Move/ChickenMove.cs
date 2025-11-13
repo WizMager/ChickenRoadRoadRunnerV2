@@ -1,12 +1,11 @@
 ﻿using System;
-using Car;
 using Db;
-using Db.Sound;
 using DG.Tweening;
 using Services.Audio;
 using Services.Checkpoint;
 using Ui;
 using Views;
+using ESoundType = Db.Sound.ESoundType;
 
 namespace Move
 {
@@ -17,7 +16,6 @@ namespace Move
         private readonly Chicken _chicken;
         private readonly GameData _gameData;
         private readonly AudioService _audioService;
-        private readonly ICarController _carController;
 
         private Sequence _sequence;
         
@@ -26,8 +24,7 @@ namespace Move
             ICheckpointService checkpointService, 
             Chicken chicken, 
             GameData gameData,
-            AudioService audioService, 
-            ICarController carController
+            AudioService audioService
         )
         {
             _gameHudWindow = gameHudWindow;
@@ -35,7 +32,6 @@ namespace Move
             _chicken = chicken;
             _gameData = gameData;
             _audioService = audioService;
-            _carController = carController;
 
             _gameHudWindow.OnNextPressed += OnNextCheckpointPressed;
         }
@@ -54,14 +50,6 @@ namespace Move
             _sequence.Append(_chicken.transform.DOMoveX(movePosition.x, stepDuration));
             _sequence.Join(_chicken.transform.DOMoveY(movePosition.y + 1, stepDuration / 2));
             _sequence.Insert(stepDuration / 2, _chicken.transform.DOMoveY(movePosition.y, stepDuration / 2));
-
-            if (_carController.IsSaveJump)
-            {
-                _sequence.OnComplete(() =>
-                {
-                    _checkpointService.NextCheckpoint();
-                });
-            }
         }
 
         public void GoToLastCheckpoint()

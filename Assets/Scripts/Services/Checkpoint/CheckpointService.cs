@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Db;
+using Ui;
 using UnityEngine;
 
 namespace Services.Checkpoint
@@ -7,6 +10,8 @@ namespace Services.Checkpoint
     public class CheckpointService : ICheckpointService
     {
         private readonly List<Views.Checkpoint> _checkpoints;
+        private readonly GameHudWindow _gameHudWindow;
+        private readonly GameData _gameData;
         
         private int _currentCheckpoint;
         
@@ -19,34 +24,54 @@ namespace Services.Checkpoint
         public Vector2 GetStartPosition => _checkpoints[0].transform.position;
         public Vector2 GetEndPosition => _checkpoints[_checkpoints.Count - 1].transform.position;
 
-        public CheckpointService(List<Views.Checkpoint> checkpoints)
+        public CheckpointService(
+            List<Views.Checkpoint> checkpoints, 
+            GameHudWindow gameHudWindow, 
+            GameData gameData
+        )
         {
             _checkpoints = checkpoints;
+            _gameHudWindow = gameHudWindow;
+            _gameData = gameData;
+
+            _gameHudWindow.OnNextPressed += NextCheckpoint;
         }
         
-        public void NextCheckpoint()
+        private void NextCheckpoint()
         {
-            _currentCheckpoint++;
+            if (_currentCheckpoint > 0)
+            {
+                _checkpoints[_currentCheckpoint].JumpFrom();
+            }
             
-            _checkpoints[_currentCheckpoint].DisableText();
+            _checkpoints[_currentCheckpoint + 1].Stay();
+
+            _gameHudWindow.StartCoroutine(WaitAndNextCheckpoint());
+        }
+
+        private IEnumerator WaitAndNextCheckpoint()
+        {
+            yield return new WaitForSeconds(_gameData.TimeToStepMove);
+            
+            _currentCheckpoint++;
             
             if (_currentCheckpoint == _checkpoints.Count - 2)
             {
                 OnLastCheckpointReached?.Invoke();
                 
-                return;
+                yield break;
             }
             
             OnCheckpointReached?.Invoke();
         }
-
+        
         public void Reset()
         {
             _currentCheckpoint = 0;
 
             foreach (var checkpoint in _checkpoints)
             {
-                checkpoint.EnableText();
+                checkpoint.ResetState();
             }
         }
     }

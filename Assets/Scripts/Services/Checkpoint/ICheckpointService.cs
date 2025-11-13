@@ -12,8 +12,7 @@ namespace Services.Checkpoint
         Vector2 GetCurrentCheckpointPosition { get; }
         Vector2 GetStartPosition { get; }
         Vector2 GetEndPosition { get; }
-
-        void NextCheckpoint();
+        
         void Reset();
     }
 }

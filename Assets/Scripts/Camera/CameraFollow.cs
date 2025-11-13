@@ -4,20 +4,19 @@ namespace Camera
 {
     public class CameraFollow : MonoBehaviour
     {
-        [SerializeField] private Transform player;
-        [SerializeField] private float leftBound = -10f;
-        [SerializeField] private float rightBound = 10f;
-        [SerializeField] private float playerOffset;
-        [SerializeField] private float smoothSpeed = 5f;
+        [SerializeField] private Transform _target;
+        [SerializeField] private float _leftBound = -10f;
+        [SerializeField] private float _rightBound = 10f;
+        [SerializeField] private float _playerOffset;
+        [SerializeField] private float _smoothSpeed = 5f;
     
         private UnityEngine.Camera _camera;
         private bool _isFollowing;
-
         public bool BlockCamera;
-
-        public void Initialize(UnityEngine.Camera camera)
+        
+        private void Awake()
         {
-            _camera = camera;
+            _camera = UnityEngine.Camera.main;
         }
     
         private void LateUpdate()
@@ -25,27 +24,27 @@ namespace Camera
             if (BlockCamera)
                 return;
             
-            if (player == null) return;
+            if (_target == null) return;
         
             var cameraHalfWidth = GetCameraHalfWidth();
             var targetX = transform.position.x;
-            var playerScreenPos = _camera.WorldToViewportPoint(player.position).x;
+            var playerScreenPos = _camera.WorldToViewportPoint(_target.position).x;
         
-            if (playerScreenPos > 0.5f + playerOffset)
+            if (playerScreenPos > 0.5f + _playerOffset)
             {
                 _isFollowing = true;
             }
         
             if (_isFollowing)
             {
-                targetX = player.position.x - (0.5f + playerOffset) * cameraHalfWidth * 2f;
+                targetX = _target.position.x - (0.5f + _playerOffset) * cameraHalfWidth * 2f;
             }
         
-            var minX = leftBound + cameraHalfWidth;
-            var maxX = rightBound - cameraHalfWidth;
+            var minX = _leftBound + cameraHalfWidth;
+            var maxX = _rightBound - cameraHalfWidth;
             targetX = Mathf.Clamp(targetX, minX, maxX);
         
-            var newX = Mathf.Lerp(transform.position.x, targetX, smoothSpeed * Time.deltaTime);
+            var newX = Mathf.Lerp(transform.position.x, targetX, _smoothSpeed * Time.deltaTime);
             transform.position = new Vector3(newX, transform.position.y, transform.position.z);
         }
     

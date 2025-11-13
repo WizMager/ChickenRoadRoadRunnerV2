@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Db.Sound;
 using UnityEngine;
 
 namespace Db
@@ -6,29 +7,19 @@ namespace Db
 	[CreateAssetMenu(fileName = "SoundData", menuName = "Data/SoundData")]
 	public class SoundData : ScriptableObject
 	{
-		[SerializeField] private AudioClip _chickenJump;
-		[SerializeField] private AudioClip _carPassing;
-		[SerializeField] private AudioClip _carStop;
-		[SerializeField] private AudioClip _coinShuffle;
-		[SerializeField] private AudioClip _winPopup;
+		[SerializeField] private List<SoundVo> _sounds;
 
-		private Dictionary<SoundType, AudioClip> _soundMap;
-
-		public AudioClip GetSound(SoundType soundType)
+		public AudioClip GetSound(ESoundType soundType)
 		{
-			if (_soundMap == null)
+			foreach (var soundVo in _sounds)
 			{
-				_soundMap = new Dictionary<SoundType, AudioClip>
-				{
-					{ SoundType.ChickenJump, _chickenJump },
-					{ SoundType.CarPassing, _carPassing },
-					{ SoundType.CarStop, _carStop },
-					{ SoundType.CoinShuffle, _coinShuffle },
-					{ SoundType.WinPopup, _winPopup }
-				};
+				if (soundVo.Type != soundType)
+					continue;
+
+				return soundVo.Clip;
 			}
 
-			return _soundMap.TryGetValue(soundType, out var clip) ? clip : null;
+			return null;
 		}
 	}
 }

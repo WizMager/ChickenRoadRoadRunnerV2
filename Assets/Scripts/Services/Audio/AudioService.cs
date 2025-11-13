@@ -11,10 +11,10 @@ namespace Services.Audio
 
 		private void Start()
 		{
-			if (_backgroundMusicSource == null)
+			if (_backgroundMusicSource == null || _soundData == null)
 				return;
 			
-			_backgroundMusicSource.clip = _soundData.GetSound(ESoundType.Music);
+			//_backgroundMusicSource.clip = _soundData.GetSound(ESoundType.Music);
 			_backgroundMusicSource.Play();
 		}
 
