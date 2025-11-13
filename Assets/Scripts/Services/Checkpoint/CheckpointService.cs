@@ -14,6 +14,7 @@ namespace Services.Checkpoint
         public Action OnCheckpointReached { get; set; }
         public int GetCurrentCheckpoint => _currentCheckpoint;
         public Vector2 GetNextCheckpointPosition => _checkpoints[_currentCheckpoint + 1].transform.position;
+        public Vector2 GetCurrentCheckpointPosition => _checkpoints[_currentCheckpoint].transform.position;
 
         public Vector2 GetStartPosition => _checkpoints[0].transform.position;
         public Vector2 GetEndPosition => _checkpoints[_checkpoints.Count - 1].transform.position;
@@ -26,6 +27,8 @@ namespace Services.Checkpoint
         public void NextCheckpoint()
         {
             _currentCheckpoint++;
+            
+            _checkpoints[_currentCheckpoint].DisableText();
             
             if (_currentCheckpoint == _checkpoints.Count - 2)
             {
@@ -40,6 +43,11 @@ namespace Services.Checkpoint
         public void Reset()
         {
             _currentCheckpoint = 0;
+
+            foreach (var checkpoint in _checkpoints)
+            {
+                checkpoint.EnableText();
+            }
         }
     }
 }

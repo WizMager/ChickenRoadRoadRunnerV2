@@ -70,7 +70,6 @@ namespace Car
             }
             else
             {
-                _bootstrap.StopCoroutine(_runCoroutine);
                 OnChickenHit?.Invoke();
             }
         }

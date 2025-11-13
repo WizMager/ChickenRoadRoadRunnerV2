@@ -1,5 +1,6 @@
 ﻿using System;
 using Db;
+using Db.Sound;
 using DG.Tweening;
 using Services.Audio;
 using UnityEngine;
@@ -52,10 +53,10 @@ namespace Views
                 {
                     _isFirstPartOfPathDone = true;
                     OnSafeZone?.Invoke(false);
-                    // Звук проезжающей машины, если барьер не был выставлен
+                    
                     if (!_hasPlayedPassingSound && (_roadBarrier == null || !_roadBarrier.IsBarrierDown))
                     {
-                        _audioService?.PlaySound(SoundType.CarPassing);
+                        _audioService?.PlaySound(ESoundType.CarPassing);
                         _hasPlayedPassingSound = true;
                     }
                 }
@@ -88,7 +89,7 @@ namespace Views
             var elapsedTime = _tween.Elapsed();
             
             _tween.Kill();
-            _audioService?.PlaySound(SoundType.CarStop);
+            _audioService?.PlaySound(ESoundType.CarStop);
             
             _car.transform.DOMoveY(_stopMoveYPosition, fullRunTime / 3 - elapsedTime).OnComplete(() =>
             {

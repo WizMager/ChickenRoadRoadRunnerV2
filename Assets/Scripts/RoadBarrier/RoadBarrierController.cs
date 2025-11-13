@@ -15,8 +15,6 @@ namespace RoadBarrier
         private readonly GameHudWindow _gameHudWindow;
         private readonly ICarController _carController;
 
-        private bool _isChickenHit;
-
         public RoadBarrierController(
             List<Views.RoadBarrier> barriers, 
             ICheckpointService checkpointService, 
@@ -38,13 +36,8 @@ namespace RoadBarrier
         {
             if (!_carController.IsSaveJump)
             {
-                _isChickenHit = true;
-                
                 return;
             }
-
-            if (_isChickenHit)
-                return;
             
             var checkpoint = _checkpointService.GetCurrentCheckpoint;
 
@@ -56,7 +49,6 @@ namespace RoadBarrier
 
         public void Reset()
         {
-            _isChickenHit = false;
             foreach (var barrier in _barriers)
             {
                 barrier.ResetState();

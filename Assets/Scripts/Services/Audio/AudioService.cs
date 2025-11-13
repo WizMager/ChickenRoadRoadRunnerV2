@@ -1,4 +1,4 @@
-using Db;
+using Db.Sound;
 using UnityEngine;
 
 namespace Services.Audio
@@ -6,9 +6,19 @@ namespace Services.Audio
 	public class AudioService : MonoBehaviour
 	{
 		[SerializeField] private AudioSource _audioSource;
+		[SerializeField] private AudioSource _backgroundMusicSource;
 		[SerializeField] private SoundData _soundData;
 
-		public void PlaySound(SoundType soundType)
+		private void Start()
+		{
+			if (_backgroundMusicSource == null)
+				return;
+			
+			_backgroundMusicSource.clip = _soundData.GetSound(ESoundType.Music);
+			_backgroundMusicSource.Play();
+		}
+
+		public void PlaySound(ESoundType soundType)
 		{
 			if (_soundData == null || _audioSource == null)
 				return;
@@ -21,4 +31,6 @@ namespace Services.Audio
 		}
 	}
 }
+
+
 

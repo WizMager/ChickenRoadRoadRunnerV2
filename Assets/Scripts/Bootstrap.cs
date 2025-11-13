@@ -15,7 +15,7 @@ public class Bootstrap : MonoBehaviour
 {
     [SerializeField] private List<Checkpoint> _checkpoints;
     [SerializeField] private Chicken _chicken;
-    [SerializeField] private Transform _camera;
+    [SerializeField] private UnityEngine.Camera _camera;
     [SerializeField] private List<CarLine> _carLines;
     [SerializeField] private List<Views.RoadBarrier> _roadBarriers;
     //UI
@@ -28,25 +28,28 @@ public class Bootstrap : MonoBehaviour
     //AUDIO
     [SerializeField] private AudioService _audioService;
 
+    [SerializeField] private CameraFollow _cameraFollow;
+
     private ICheckpointService _checkpointService;
     private IChickenMove _chickenMove;
     private ICarController _carController;
     private IRoadBarrierController _roadBarrierController;
-    private ICameraFollow _cameraFollow;
 
     private void Awake()
     {
         _checkpointService = new CheckpointService(_checkpoints);
         _checkpointService.OnLastCheckpointReached += OnLastCheckpointReached;
-        _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService);
         _carController = new CarController(_carLines, _checkpointService, _gameHudWindow, _gameData, this, _iconsData, _audioService, _roadBarriers);
+        _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService, _carController);
         _carController.OnChickenHit += OnChickenHit;
         _carController.Initialize();
         _roadBarrierController = new RoadBarrierController(_roadBarriers, _checkpointService, _gameData, _gameHudWindow, _carController);
-        _cameraFollow = new CameraFollow(_camera, _chicken.transform, 3.080001f);
         
-        _gameHudWindow.Initialize(_gameData, _checkpoints.Count - 1);
+        _cameraFollow.Initialize(_camera);
+        _gameHudWindow.Initialize(_gameData, _checkpoints.Count - 1, _carController);
+        _minigamePopupWindow.Initialize(_audioService);
         _winPopupWindow.Initialize(_audioService);
+        _minigamePopupWindow.OnCompleteMiniGame += OnCompleteMiniGame;
     }
 
     private void OnCompleteMiniGame()
@@ -57,28 +60,28 @@ public class Bootstrap : MonoBehaviour
 
     private void OnLastCheckpointReached()
     {
-		
+		_minigamePopupWindow.PlaySequence();
     }
 
     private void OnChickenHit()
     {
-        _chickenMove.Reset();
-        _carController.Reset();
-        _checkpointService.Reset();
-        _gameHudWindow.Reset();
-
-        StartCoroutine(SkipFrame());
+        StartCoroutine(SkipTime());
     }
 
-    private IEnumerator SkipFrame()
+    private IEnumerator SkipTime()
     {
-        yield return null;
+        yield return new WaitForSeconds(_gameData.TimeToStepMove / 3);
         
-        _roadBarrierController.Reset();
-    }
+        _chickenMove.RevertJump();
 
-    private void Update()
-    {
-        _cameraFollow.Update();
+        if (_checkpointService.GetCurrentCheckpoint == 0)
+        {
+            _gameHudWindow.Reset();
+            
+            yield break;
+        }
+            
+        
+        _winPopupWindow.Show(true, _gameHudWindow.CurrentScore);
     }
 }

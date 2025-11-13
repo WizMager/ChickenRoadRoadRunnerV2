@@ -1,4 +1,5 @@
 using Db;
+using Db.Sound;
 using DG.Tweening;
 using Services.Audio;
 using TMPro;
@@ -25,6 +26,33 @@ namespace Ui
 		[SerializeField] private float _notificationSlideDuration = 0.5f;
 		[SerializeField] private VerticalLayoutGroup _verticalLayoutGroup;
 		[SerializeField] private RectTransform _frameContainer;
+
+		[SerializeField] private TMP_Text _notifyNew;
+		[SerializeField] private TMP_Text _notifyNewTransaction;
+		[SerializeField] private TMP_Text _notifyTransaction;
+		[SerializeField] private TMP_Text _notifyBalance;
+		
+		[SerializeField] private TMP_Text _congratText;
+		
+		[SerializeField] private TMP_Text _getBonusText;
+		
+		[LunaPlaygroundField("Notify now", 1, "Win Popup Window")]
+		public string NotifyNowText;
+		
+		[LunaPlaygroundField("New transaction", 2, "Win Popup Window")]
+		public string NewTransactionText;
+		
+		[LunaPlaygroundField("Transaction", 3, "Win Popup Window")]
+		public string TransactionText;
+		
+		[LunaPlaygroundField("Balance", 4, "Win Popup Window")]
+		public string BalanceText;
+		
+		[LunaPlaygroundField("Congrat", 5, "Win Popup Window")]
+		public string CongratText;
+		
+		[LunaPlaygroundField("Get Bonus", 6, "Win Popup Window")]
+		public string GetBonusText;
 		
 	private Sequence _sequence;
 	private int _startValue = 3150;
@@ -45,6 +73,13 @@ namespace Ui
 		
 		_getBonus.onClick.AddListener(OnClickGetBonus);
 		AdjustForAspectRatio();
+		
+		_notifyNew.text = NotifyNowText;
+		_notifyNewTransaction.text = NewTransactionText;
+		_notifyTransaction.text = TransactionText;
+		_notifyBalance.text = BalanceText;
+		_congratText.text = CongratText;
+		_getBonusText.text = GetBonusText;
 	}
 
 	private void OnClickGetBonus()
@@ -96,18 +131,18 @@ namespace Ui
 		_notificationPanel.DOAnchorPos(_notificationEndPosition, _notificationSlideDuration).SetEase(Ease.OutBack);
 	}
 
-	public void Show()
+	public void Show(bool isLose = false, int score = 0)
 	{
 		_sequence?.Kill();
 		gameObject.SetActive(true);
 		_rootCanvasGroup.alpha = 0f;
-		_valueText.text = _startValue.ToString();
+		_valueText.text = $"{_startValue}€";
 		_frameImage.transform.localRotation = Quaternion.identity;
 
 		_sequence = DOTween.Sequence();
 		
 		_coinsAnimator.SetTrigger("Play");
-		_audioService?.PlaySound(SoundType.WinPopup);
+		_audioService?.PlaySound(ESoundType.WinPopup);
 		_sequence.Append(_rootCanvasGroup.DOFade(1f, _fadeDuration));
 		if (_backdrop != null)
 		{
@@ -116,11 +151,27 @@ namespace Ui
 			_backdrop.color = col;
 			_sequence.Join(_backdrop.DOFade(0.6f, _fadeDuration));
 		}
-		
-		_sequence.Append(DOVirtual.Int(_startValue, _endValue, _textChangeDuration, value =>
+
+		if (isLose)
 		{
-			_valueText.text = value.ToString();
-		}));
+			_notifyTransaction.text += $"{score} EUR";
+			_notifyBalance.text += $"{score} EUR";
+			
+			_sequence.Append(DOVirtual.Int(0, score, _textChangeDuration, value =>
+			{
+				_valueText.text = value.ToString();
+			}));
+		}
+		else
+		{
+			_notifyTransaction.text += "31500 EUR";
+			_notifyBalance.text += "31500 EUR";
+			
+			_sequence.Append(DOVirtual.Int(_startValue, _endValue, _textChangeDuration, value =>
+			{
+				_valueText.text = $"{value}€";
+			}));
+		}
 		
 		_sequence.AppendCallback(() =>
 		{

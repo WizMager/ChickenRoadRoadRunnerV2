@@ -962,31 +962,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21fd09a815da3f845a1db7c35102898d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rootCanvasGroup: {fileID: 407013771}
-  _backdrop: {fileID: 1159350944}
-  _coinTop: {fileID: 2100570688}
-  _coinLeft: {fileID: 1765181036}
-  _coinRight: {fileID: 531973760}
-  _coinTopText: {fileID: 264588536}
-  _coinLeftText: {fileID: 1329151596}
-  _coinRightText: {fileID: 1989621175}
-  _coinTopAnimator: {fileID: 2100570691}
-  _coinLeftAnimator: {fileID: 1765181039}
-  _coinRightAnimator: {fileID: 531973763}
-  _coinTopButton: {fileID: 2100570692}
-  _coinLeftButton: {fileID: 1765181040}
-  _coinRightButton: {fileID: 531973764}
+  _canvasGroup: {fileID: 0}
+  _animator: {fileID: 0}
+  _elementsToScale: []
+  _animatorTrigger: Play
+  _appearDuration: 0.4
+  _appearStagger: 0.05
+  _appearEase: 27
+  _flyingElement: {fileID: 0}
+  _flyingElementImage: {fileID: 0}
+  _targetRect: {fileID: 0}
+  _targetImage: {fileID: 0}
+  _flightDuration: 0.6
+  _flightEase: 4
   _fadeDuration: 0.25
-  _waitBeforeShuffle: 2
-  _swapDuration: 0.1
-  _swapIterations: 5
-  _convergeDuration: 0.5
-  _zoomScale: 1.6
-  _zoomDuration: 0.45
-  _flipDuration: 0.5
-  _autoHideDelay: 2
-  _flyAwayDirection: {x: 0, y: 800}
-  _flyAwayDuration: 0.45
+  _hideRootAfterFlight: 1
+  _disableTargetImageUntilLanding: 1
+  _rootCanvas: {fileID: 0}
 --- !u!225 &407013771
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -995,7 +987,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407013768}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
