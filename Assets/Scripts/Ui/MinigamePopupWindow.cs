@@ -26,7 +26,7 @@ namespace Ui
         
         private void Start()
         {
-            return; //TODO: debug
+            //return; //TODO: debug
             _animator.GetBehaviour<WheelSpinAnimationSignal>().OnSignal += OnWheelSpinAnimationSignal;
 
             _canvasGroup.blocksRaycasts = true;

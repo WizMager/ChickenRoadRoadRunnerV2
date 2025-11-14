@@ -52,8 +52,13 @@ namespace CarLine
         private IEnumerator WaitAndCarHandle(int checkpointIndex)
         {
             yield return new WaitForSeconds(_gameData.TimeToStepMove);
+
+            var chance = Mathf.Clamp01(_gameData.CarSpawnChancePercent / 100f);
             
-            _carLines[checkpointIndex].StartCar(_gameData.CarDriveTimeBeforeBarrier, _iconsData.GetRandomCar());
+            if (Random.value <= chance)
+            {
+                _carLines[checkpointIndex].StartCar(_gameData.CarDriveTimeBeforeBarrier, _iconsData.GetRandomCar());
+            }
         }
         
         private void OnRevive()
@@ -67,7 +72,7 @@ namespace CarLine
                 yield return null;
                 
                 var currentCheckpointIndex = _checkpointService.GetCurrentCheckpoint;
-                _carLines[currentCheckpointIndex].StartBarrier(_gameData.TimeToStepMove);
+                _carLines[currentCheckpointIndex - 1].StartBarrier(_gameData.TimeToStepMove);
             }
         }
     }

@@ -10,11 +10,13 @@ namespace Db
         [SerializeField] private float _carDriveTimeFullPath = 1f;
         [SerializeField] private int _loseAfterCheckpoint = 5;
         [SerializeField] private float _reviveScaleTime = 0.6f;
+        [SerializeField, Range(0f, 100f)] private float _carSpawnChancePercent = 50f;
         
         public float TimeToStepMove => _timeToStepMove;
         public float CarDriveTimeBeforeBarrier => _carDriveTimeBeforeBarrier;
         public float CarDriveTimeFullPath => _carDriveTimeFullPath;
         public int LoseAfterCheckpoint => _loseAfterCheckpoint;
         public float ReviveScaleTime => _reviveScaleTime;
+        public float CarSpawnChancePercent => _carSpawnChancePercent;
     }
 }
