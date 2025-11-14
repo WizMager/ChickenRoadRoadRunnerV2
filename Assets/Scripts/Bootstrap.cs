@@ -21,13 +21,13 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private GameHudWindow _gameHudWindow;
     [SerializeField] private MinigamePopupWindow _minigamePopupWindow;
     [SerializeField] private WinPopupWindow _winPopupWindow;
+    
     //DATA
     [SerializeField] private GameData _gameData;
     [SerializeField] private IconsData _iconsData;
     [SerializeField] private CheckpointData _checkpointData;
-    //AUDIO
+    
     [SerializeField] private AudioService _audioService;
-
     [SerializeField] private CameraFollow _cameraFollow;
 
     private ICheckpointService _checkpointService;
@@ -37,7 +37,7 @@ public class Bootstrap : MonoBehaviour
     {
         for (var i = 0; i < _checkpoints.Count; i++)
         {
-            _checkpoints[i].Initialize(_iconsData, "x" + _checkpointData.GetCheckpointData(i).Multiply.ToString(CultureInfo.InvariantCulture));
+            _checkpoints[i].Initialize(_iconsData, "x" + _checkpointData.GetCheckpointData(i).Multiply.ToString(CultureInfo.InvariantCulture), _gameData);
         }
 
         _checkpointService = new CheckpointService(_checkpoints, _gameHudWindow, _gameData);

@@ -50,7 +50,7 @@ MonoBehaviour:
   _car: {fileID: 1186379383195633142}
   _startMoveYPosition: 12
   _stopMoveYPosition: 4.5
-  _barrier: {fileID: 0}
+  _barrier: {fileID: 2404644392557100949}
   _roadBarrierYPosition: 1.45
 --- !u!1 &2989161855057485270
 GameObject:
