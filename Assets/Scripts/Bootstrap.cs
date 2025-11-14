@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Camera;
+using CarLine;
 using Db;
 using Db.Checkpoint;
 using Move;
@@ -14,6 +15,7 @@ using Views;
 public class Bootstrap : MonoBehaviour
 {
     [SerializeField] private List<Checkpoint> _checkpoints;
+    [SerializeField] private List<Views.CarLine> _carLines;
     [SerializeField] private Chicken _chicken;
     [SerializeField] private UnityEngine.Camera _camera;
    
@@ -32,6 +34,7 @@ public class Bootstrap : MonoBehaviour
 
     private ICheckpointService _checkpointService;
     private IChickenMove _chickenMove;
+    //private ICarLineController _carLineController;
 
     private void Awake()
     {
@@ -42,5 +45,6 @@ public class Bootstrap : MonoBehaviour
 
         _checkpointService = new CheckpointService(_checkpoints, _gameHudWindow, _gameData);
         _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService);
+        new CarLineController(_gameHudWindow, _carLines, _checkpointService, _gameData);
     }
 }

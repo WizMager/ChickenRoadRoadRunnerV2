@@ -17,7 +17,7 @@ namespace Views
         //barrier
         [SerializeField] private SpriteRenderer _barrier;
         [SerializeField] private SpriteRenderer _barrierShadow;
-        [SerializeField] private float _roadBarrierYPosition = 1.45f;
+        [SerializeField] private float _roadBarrierYPosition = 1.68f;
         
         
         public void StartCar(float time, Sprite carIcon)
@@ -25,9 +25,28 @@ namespace Views
             
         }
 
-        public void StartBarrier()
+        public void StartBarrier(float time)
         {
+            if (_barrier == null || _barrierShadow == null)
+            {
+                return;
+            }
+
+            if (time <= 0f)
+            {
+                time = 0.01f;
+            }
             
+            DOTween.Kill(_barrier.transform);
+            DOTween.Kill(_barrierShadow);
+
+            _barrier.enabled = true;
+            _barrier.transform.DOMoveY(_roadBarrierYPosition, time).SetEase(Ease.Linear);
+
+            var shadowDelay = time / 3f * 2;
+            var shadowDuration = Math.Max(0.01f, time - shadowDelay);
+
+            _barrierShadow.DOFade(1f, shadowDuration).SetDelay(shadowDelay).SetEase(Ease.Linear);
         }
         
         public void StartFullRunCar(float time, Sprite carIcon)
