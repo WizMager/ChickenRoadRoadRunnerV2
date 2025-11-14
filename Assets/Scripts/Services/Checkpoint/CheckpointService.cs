@@ -17,10 +17,10 @@ namespace Services.Checkpoint
         
         public Action OnLastCheckpointReached { get; set; }
         public Action OnCheckpointReached { get; set; }
+        public bool IsLastCheckpoint { get; private set; }
         public int GetCurrentCheckpoint => _currentCheckpoint;
         public Vector2 GetNextCheckpointPosition => _checkpoints[_currentCheckpoint + 1].transform.position;
         public Vector2 GetCurrentCheckpointPosition => _checkpoints[_currentCheckpoint].transform.position;
-
         public Vector2 GetStartPosition => _checkpoints[0].transform.position;
         public Vector2 GetEndPosition => _checkpoints[_checkpoints.Count - 1].transform.position;
 
@@ -39,6 +39,9 @@ namespace Services.Checkpoint
 
         private void NextCheckpoint()
         {
+            if (IsLastCheckpoint)
+                return;
+            
             if (_currentCheckpoint > 0)
             {
                 if (_currentCheckpoint != _gameData.LoseAfterCheckpoint + 1)
@@ -60,6 +63,7 @@ namespace Services.Checkpoint
             
             if (_currentCheckpoint == _checkpoints.Count - 2)
             {
+                IsLastCheckpoint = true;
                 OnLastCheckpointReached?.Invoke();
                 
                 yield break;

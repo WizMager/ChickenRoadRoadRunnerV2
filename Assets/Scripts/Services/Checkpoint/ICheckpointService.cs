@@ -6,7 +6,7 @@ namespace Services.Checkpoint
     public interface ICheckpointService
     {
         Action OnLastCheckpointReached { get; set; }
-        Action OnCheckpointReached { get; set; }
+        bool IsLastCheckpoint { get; }
         int GetCurrentCheckpoint { get; }
         Vector2 GetNextCheckpointPosition { get; }
         Vector2 GetCurrentCheckpointPosition { get; }

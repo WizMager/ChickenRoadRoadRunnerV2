@@ -1,10 +1,11 @@
-﻿namespace Move
+﻿using System;
+
+namespace Move
 {
     public interface IChickenMove
     {
+        Action OnFinalMoveEnd { get; set; }
+        
         void Initialize();
-        void GoToLastCheckpoint();
-        void RevertJump();
-        void Reset();
     }
 }

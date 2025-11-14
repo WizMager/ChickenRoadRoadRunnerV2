@@ -14,6 +14,7 @@ namespace Ui
     {
         public Action OnNextPressed;
         public Action OnRevivePress;
+        public Action OnWithdrawPress;
         
         [SerializeField] private Button _goNextButton;
         [SerializeField] private Button _withdrawButton;
@@ -84,6 +85,7 @@ namespace Ui
 	        
 	        _goNextButton.onClick.AddListener(OnGoPressed);
 	        _reviveButton.onClick.AddListener(OnRevivePressed);
+	        _withdrawButton.onClick.AddListener(() => OnWithdrawPress?.Invoke());
 
 	        if (_reviveTutorArrow != null)
 	        {

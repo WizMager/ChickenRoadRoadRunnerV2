@@ -23,6 +23,8 @@ namespace Move
 
         private Sequence _sequence;
         private bool _isLose;
+
+        public Action OnFinalMoveEnd { get; set; }
         
         public ChickenMove(
             GameHudWindow gameHudWindow, 
@@ -41,6 +43,7 @@ namespace Move
             _iconsData = iconsData;
 
             _gameHudWindow.OnNextPressed += OnNextCheckpointPressed;
+            _checkpointService.OnLastCheckpointReached += OnLastCheckpointReached;
         }
 
         public void Initialize()
@@ -72,6 +75,9 @@ namespace Move
         
         private void OnNextCheckpointPressed()
         {
+            if (_checkpointService.IsLastCheckpoint)
+                return;
+            
             _chicken.StartJumpAnimation();
             _audioService?.PlaySound(ESoundType.ChickenJump);
             
@@ -80,21 +86,6 @@ namespace Move
             
             var stepDuration = _gameData.TimeToStepMove;
             var movePosition = _checkpointService.GetNextCheckpointPosition;
-            
-            _sequence.Append(_chicken.transform.DOMoveX(movePosition.x, stepDuration));
-            _sequence.Join(_chicken.transform.DOMoveY(movePosition.y + 1, stepDuration / 2));
-            _sequence.Insert(stepDuration / 2, _chicken.transform.DOMoveY(movePosition.y, stepDuration / 2));
-        }
-
-        public void GoToLastCheckpoint()
-        {
-            _chicken.StartJumpAnimation();
-            
-            _sequence?.Kill();
-            _sequence = DOTween.Sequence();
-            
-            var stepDuration = _gameData.TimeToStepMove;
-            var movePosition = _checkpointService.GetEndPosition;
             
             _sequence.Append(_chicken.transform.DOMoveX(movePosition.x, stepDuration));
             _sequence.Join(_chicken.transform.DOMoveY(movePosition.y + 1, stepDuration / 2));
@@ -113,11 +104,25 @@ namespace Move
             _sequence.Join(_chicken.transform.DOMoveY(movePosition.y, stepDuration / 3 * 2));
         }
 
-        public void Reset()
+        private void OnLastCheckpointReached()
         {
+            _chicken.StartJumpAnimation();
+            _audioService?.PlaySound(ESoundType.ChickenJump);
+            
             _sequence?.Kill();
-            _chicken.transform.position = _checkpointService.GetStartPosition;
-            _chicken.InterruptJumpAnimation();
+            _sequence = DOTween.Sequence();
+            
+            var stepDuration = _gameData.TimeToStepMove;
+            var movePosition = _checkpointService.GetEndPosition;
+            
+            _sequence.Append(_chicken.transform.DOMoveX(movePosition.x, stepDuration));
+            _sequence.Join(_chicken.transform.DOMoveY(movePosition.y + 1, stepDuration / 2));
+            _sequence.Insert(stepDuration / 2, _chicken.transform.DOMoveY(movePosition.y, stepDuration / 2));
+            _sequence.OnComplete(() =>
+            {
+                _chicken.GetAnimator.SetTrigger("InfinityJump");
+                OnFinalMoveEnd?.Invoke();
+            });
         }
 
         public void Dispose()

@@ -35,6 +35,9 @@ namespace CarLine
 
         private void OnNext()
         {
+            if (_checkpointService.IsLastCheckpoint)
+                return;
+            
             var currentCheckpointIndex = _checkpointService.GetCurrentCheckpoint;
 
             if (currentCheckpointIndex == _gameData.LoseAfterCheckpoint)
