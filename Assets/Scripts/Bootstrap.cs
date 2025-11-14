@@ -49,6 +49,7 @@ public class Bootstrap : MonoBehaviour
         
         _minigamePopupWindow.Initialize(_uiData);
         _gameHudWindow.Initialize(_uiData, _checkpointService, _gameData, _chicken, _iconsData);
+        _winPopupWindow.Initialize(_chickenMove, _gameHudWindow);
     }
 
     private void Start()

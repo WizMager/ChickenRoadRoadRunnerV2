@@ -97,6 +97,9 @@ namespace Ui
 
         private void OnGoPressed()
         {
+	        if (_checkpointService.IsLastCheckpoint)
+		        return;
+	        
 	        OnNextPressed?.Invoke();
 	        
 	        _goNextButton.interactable = false;
@@ -118,6 +121,8 @@ namespace Ui
 
         private void OnRevivePressed()
         {
+	        _reviveButton.interactable = false;
+	        
 	        OnRevivePress?.Invoke();
 	        StopArrowAnimation();
 
@@ -165,6 +170,8 @@ namespace Ui
 		        _arrowStartCaptured = true;
 	        }
 
+	        _reviveButton.interactable = true;
+	        
 	        StopArrowAnimation();
 
 	        _reviveTutorArrow.rectTransform.anchoredPosition = _arrowStartAnchoredPosition;
