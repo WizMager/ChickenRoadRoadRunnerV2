@@ -36,16 +36,19 @@ namespace Services.Checkpoint
 
             _gameHudWindow.OnNextPressed += NextCheckpoint;
         }
-        
+
         private void NextCheckpoint()
         {
             if (_currentCheckpoint > 0)
             {
-                _checkpoints[_currentCheckpoint].JumpFrom();
+                if (_currentCheckpoint != _gameData.LoseAfterCheckpoint + 1)
+                {
+                    _checkpoints[_currentCheckpoint].JumpFrom();
+                }
             }
-            
-            _checkpoints[_currentCheckpoint + 1].Stay();
 
+            _checkpoints[_currentCheckpoint + 1].Stay();
+            
             _gameHudWindow.StartCoroutine(WaitAndNextCheckpoint());
         }
 
@@ -63,16 +66,6 @@ namespace Services.Checkpoint
             }
             
             OnCheckpointReached?.Invoke();
-        }
-        
-        public void Reset()
-        {
-            _currentCheckpoint = 0;
-
-            foreach (var checkpoint in _checkpoints)
-            {
-                checkpoint.ResetState();
-            }
         }
     }
 }

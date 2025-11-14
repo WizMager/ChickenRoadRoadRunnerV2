@@ -15,3 +15,5 @@ MonoBehaviour:
   _timeToStepMove: 0.85
   _carDriveTimeBeforeBarrier: 0.2
   _carDriveTimeFullPath: 1.6
+  _loseAfterCheckpoint: 1
+  _reviveScaleTime: 0.6

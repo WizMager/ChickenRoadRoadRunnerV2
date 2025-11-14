@@ -26,8 +26,10 @@ namespace Ui
         
         private void Start()
         {
+            return; //TODO: debug
             _animator.GetBehaviour<WheelSpinAnimationSignal>().OnSignal += OnWheelSpinAnimationSignal;
-            
+
+            _canvasGroup.blocksRaycasts = true;
             PrepareState();
             PlayShowAnimation();
         }
@@ -123,6 +125,7 @@ namespace Ui
                     _canvasGroup.interactable = false;
                     _canvasGroup.blocksRaycasts = false;
                     gameObject.SetActive(false);
+                    _canvasGroup.blocksRaycasts = false;
                 });
         }
     }

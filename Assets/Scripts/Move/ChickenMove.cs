@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using Db;
 using DG.Tweening;
 using Services.Audio;
 using Services.Checkpoint;
 using Ui;
+using UnityEngine;
 using Utils;
 using Views;
 using ESoundType = Db.Sound.ESoundType;
@@ -48,16 +50,26 @@ namespace Move
 
         private void OnAnimationEnd()
         {
-            if (!_isLose && _checkpointService.GetCurrentCheckpoint == 5)
+            if (!_isLose && _checkpointService.GetCurrentCheckpoint == _gameData.LoseAfterCheckpoint)
             {
+                
                 _isLose = true;
                 _sequence?.Kill();
                 _chicken.GetAnimator.enabled = false;
                 _chicken.OffsetPosition(true);
                 _chicken.SetSprite(_iconsData.GetChickenSprite(false));
+
+                _gameHudWindow.StartCoroutine(WaitAndStartTutorial());
             }
         }
 
+        private IEnumerator WaitAndStartTutorial()
+        {
+            yield return new WaitForSeconds(1f);
+            
+            _gameHudWindow.ShowReviveTutor();
+        }
+        
         private void OnNextCheckpointPressed()
         {
             _chicken.StartJumpAnimation();

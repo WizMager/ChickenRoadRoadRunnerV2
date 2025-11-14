@@ -17,3 +17,10 @@ MonoBehaviour:
   _durationBeforeHearthTravel: 0.1
   _heartTravelDuration: 0.7
   _closeFadeDuration: 0.3
+  _reviveArrowFadeDuration: 0.25
+  _reviveArrowPulseDuration: 0.6
+  _reviveArrowPulseScale: 1.2
+  _reviveArrowFlyOffDistance: 1000
+  _reviveArrowFlyOffDuration: 0.7
+  _reviveArrowFlyOffDirection: {x: 1, y: 0}
+  _reviveHeartDarkenDuration: 0.25

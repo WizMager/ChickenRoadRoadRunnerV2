@@ -15,6 +15,8 @@ namespace Views
         private IconsData _iconsData;
         private GameData _gameData;
 
+        private bool _isJumpedFrom;
+
         public void Initialize(
             IconsData iconsData, 
             string text,
@@ -42,24 +44,22 @@ namespace Views
 
         public void JumpFrom()
         {
+            if (_isJumpedFrom)
+                return;
+
+            _isJumpedFrom = true;
+            
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
 
             _spriteRenderer.sprite = _iconsData.GetSewerSprite(false);
 
-            var time = 1f;
+            var time = _gameData.TimeToStepMove;
             _sequence.Append(_spriteRenderer.transform.DORotate(new Vector3(0, 0, 0), time));
             _sequence.Insert(time / 3,DOVirtual.Color(_spriteRenderer.color, new Color(1, 1, 1, 1), time / 3 * 2, value =>
             {
                 _spriteRenderer.color = value;
             }));
-        }
-
-        public void ResetState()
-        {
-            _spriteRenderer.sprite = _iconsData.GetSewerSprite(false);
-            _spriteRenderer.color = Color.white;
-            _spriteRenderer.transform.rotation = Quaternion.identity;
         }
     }
 }

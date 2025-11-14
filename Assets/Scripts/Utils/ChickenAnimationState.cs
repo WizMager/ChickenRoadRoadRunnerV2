@@ -9,7 +9,7 @@ namespace Utils
         
         [SerializeField]
         [Range(0f, 1f)]
-        private float _threshold = 0.8f;
+        private float _threshold = 0.85f;
         
         private bool _isSent;
         
@@ -20,9 +20,9 @@ namespace Utils
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (!_isSent || stateInfo.normalizedTime < _threshold)
+            if (_isSent || stateInfo.normalizedTime < _threshold)
                 return;
-
+            
             _isSent = true;
             OnAnimationEnd?.Invoke();
         }

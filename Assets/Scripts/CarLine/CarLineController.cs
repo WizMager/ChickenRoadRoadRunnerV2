@@ -30,22 +30,21 @@ namespace CarLine
             _iconsData = iconsData;
 
             _gameHudWindow.OnNextPressed += OnNext;
+            _gameHudWindow.OnRevivePress += OnRevive;
         }
 
         private void OnNext()
         {
             var currentCheckpointIndex = _checkpointService.GetCurrentCheckpoint;
 
-            if (currentCheckpointIndex == 5)
+            if (currentCheckpointIndex == _gameData.LoseAfterCheckpoint)
             {
                 _carLines[currentCheckpointIndex].StartFullRunCar(_gameData.CarDriveTimeFullPath, _iconsData.GetRandomCar());
                 
                 return;
             }
             
-            var animationTime = _gameData.TimeToStepMove;
-            
-            _carLines[currentCheckpointIndex].StartBarrier(animationTime);
+            _carLines[currentCheckpointIndex].StartBarrier(_gameData.TimeToStepMove);
             
             _gameHudWindow.StartCoroutine(WaitAndCarHandle(currentCheckpointIndex));
         }
@@ -55,6 +54,21 @@ namespace CarLine
             yield return new WaitForSeconds(_gameData.TimeToStepMove);
             
             _carLines[checkpointIndex].StartCar(_gameData.CarDriveTimeBeforeBarrier, _iconsData.GetRandomCar());
+        }
+        
+        private void OnRevive()
+        {
+            _gameHudWindow.StartCoroutine(WaitAndDownBarricade());
+            
+            return;
+            
+            IEnumerator WaitAndDownBarricade()
+            {
+                yield return null;
+                
+                var currentCheckpointIndex = _checkpointService.GetCurrentCheckpoint;
+                _carLines[currentCheckpointIndex].StartBarrier(_gameData.TimeToStepMove);
+            }
         }
     }
 }
