@@ -7,21 +7,24 @@ namespace Utils
     {
         public Action OnAnimationEnd;
         
+        [SerializeField]
+        [Range(0f, 1f)]
+        private float _threshold = 0.8f;
+        
         private bool _isSent;
         
         public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             _isSent = false;
         }
-        
-        public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            if (!_isSent)
-            {
-                OnAnimationEnd?.Invoke();
-                
-                _isSent = true;
-            }
+            if (!_isSent || stateInfo.normalizedTime < _threshold)
+                return;
+
+            _isSent = true;
+            OnAnimationEnd?.Invoke();
         }
     }
 }

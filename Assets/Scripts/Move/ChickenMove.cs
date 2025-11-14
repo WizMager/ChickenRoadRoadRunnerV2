@@ -48,14 +48,14 @@ namespace Move
 
         private void OnAnimationEnd()
         {
-            if (_isLose && _checkpointService.GetCurrentCheckpoint != 5)
-                return;
-            
-            _isLose = true;
-            _sequence?.Kill();
-            _chicken.GetAnimator.enabled = false;
-            _chicken.OffsetPosition(true);
-            _chicken.SetSprite(_iconsData.GetChickenSprite(false));
+            if (!_isLose && _checkpointService.GetCurrentCheckpoint == 5)
+            {
+                _isLose = true;
+                _sequence?.Kill();
+                _chicken.GetAnimator.enabled = false;
+                _chicken.OffsetPosition(true);
+                _chicken.SetSprite(_iconsData.GetChickenSprite(false));
+            }
         }
 
         private void OnNextCheckpointPressed()

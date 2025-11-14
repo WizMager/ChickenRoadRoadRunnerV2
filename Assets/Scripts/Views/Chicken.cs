@@ -39,7 +39,6 @@ namespace Views
             }
             
             transform.position = position;
-            Debug.Log(transform.position);
         }
     }
 }

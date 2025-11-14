@@ -27,6 +27,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private GameData _gameData;
     [SerializeField] private IconsData _iconsData;
     [SerializeField] private CheckpointData _checkpointData;
+    [SerializeField] private UiData _uiData;
     
     [SerializeField] private AudioService _audioService;
     [SerializeField] private CameraFollow _cameraFollow;
@@ -45,6 +46,8 @@ public class Bootstrap : MonoBehaviour
         _checkpointService = new CheckpointService(_checkpoints, _gameHudWindow, _gameData);
         _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService, _iconsData);
         _carLineController = new CarLineController(_gameHudWindow, _carLines, _checkpointService, _gameData, _iconsData);
+        
+        _minigamePopupWindow.Initialize(_uiData);
     }
 
     private void Start()
