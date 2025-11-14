@@ -120,3 +120,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 3954064582642841998}
+  _spriteRenderer: {fileID: 3954064582642841999}
+  _offsetY: -0.51

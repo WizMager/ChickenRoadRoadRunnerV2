@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace CarLine
 {
-    public class CarLineController
+    public class CarLineController : ICarLineController
     {
         private readonly GameHudWindow _gameHudWindow;
         private readonly List<Views.CarLine> _carLines;
@@ -35,6 +35,14 @@ namespace CarLine
         private void OnNext()
         {
             var currentCheckpointIndex = _checkpointService.GetCurrentCheckpoint;
+
+            if (currentCheckpointIndex == 5)
+            {
+                _carLines[currentCheckpointIndex].StartFullRunCar(_gameData.CarDriveTimeFullPath, _iconsData.GetRandomCar());
+                
+                return;
+            }
+            
             var animationTime = _gameData.TimeToStepMove;
             
             _carLines[currentCheckpointIndex].StartBarrier(animationTime);

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be879e1406a346e3879dd8313344ded8, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  _timeToStepMove: 0.7
-  _startCarTimer: 3
-  _carMoveAllPathTime: 2
+  _timeToStepMove: 0.85
+  _carDriveTimeBeforeBarrier: 0.2
+  _carDriveTimeFullPath: 1.6

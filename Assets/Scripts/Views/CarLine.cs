@@ -1,8 +1,6 @@
 ﻿using System;
 using DG.Tweening;
-using Services.Audio;
 using UnityEngine;
-using ESoundType = Db.Sound.ESoundType;
 
 namespace Views
 {
@@ -69,7 +67,25 @@ namespace Views
         
         public void StartFullRunCar(float time, Sprite carIcon)
         {
+            if (_car == null)
+            {
+                return;
+            }
             
+            if (time <= 0f)
+            {
+                time = 0.01f;
+            }
+            
+            DOTween.Kill(_barrierShadow);
+
+            _car.enabled = true;
+            _car.sprite = carIcon;
+            var position = _car.transform.position;
+            position.y = _startMoveYPosition;
+            _car.transform.position = position;
+            
+            _car.transform.DOMoveY(_endMoveYPosition, time).SetEase(Ease.Linear);
         }
 
         public void ResetState()

@@ -8,6 +8,7 @@ namespace Db
     {
         [SerializeField] private List<Sprite> _cars;
         [SerializeField] private List<Sprite> _sewerSprites;
+        [SerializeField] private List<Sprite> _chickenSprites;
 
         public Sprite GetRandomCar()
         {
@@ -17,6 +18,11 @@ namespace Db
         public Sprite GetSewerSprite(bool isClosed)
         {
             return _sewerSprites[isClosed ? 0 : 1];
+        }
+
+        public Sprite GetChickenSprite(bool isLive)
+        {
+            return _chickenSprites[isLive ? 0 : 1];
         }
     }
 }

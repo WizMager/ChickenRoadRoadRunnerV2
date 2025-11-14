@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using Camera;
 using CarLine;
@@ -34,7 +33,7 @@ public class Bootstrap : MonoBehaviour
 
     private ICheckpointService _checkpointService;
     private IChickenMove _chickenMove;
-    //private ICarLineController _carLineController;
+    private ICarLineController _carLineController;
 
     private void Awake()
     {
@@ -44,7 +43,12 @@ public class Bootstrap : MonoBehaviour
         }
 
         _checkpointService = new CheckpointService(_checkpoints, _gameHudWindow, _gameData);
-        _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService);
-        new CarLineController(_gameHudWindow, _carLines, _checkpointService, _gameData, _iconsData);
+        _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService, _iconsData);
+        _carLineController = new CarLineController(_gameHudWindow, _carLines, _checkpointService, _gameData, _iconsData);
+    }
+
+    private void Start()
+    {
+        _chickenMove.Initialize();
     }
 }

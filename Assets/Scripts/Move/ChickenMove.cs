@@ -4,7 +4,7 @@ using DG.Tweening;
 using Services.Audio;
 using Services.Checkpoint;
 using Ui;
-using UnityEngine;
+using Utils;
 using Views;
 using ESoundType = Db.Sound.ESoundType;
 
@@ -17,15 +17,18 @@ namespace Move
         private readonly Chicken _chicken;
         private readonly GameData _gameData;
         private readonly AudioService _audioService;
+        private readonly IconsData _iconsData;
 
         private Sequence _sequence;
+        private bool _isLose;
         
         public ChickenMove(
             GameHudWindow gameHudWindow, 
             ICheckpointService checkpointService, 
             Chicken chicken, 
             GameData gameData,
-            AudioService audioService
+            AudioService audioService, 
+            IconsData iconsData
         )
         {
             _gameHudWindow = gameHudWindow;
@@ -33,8 +36,26 @@ namespace Move
             _chicken = chicken;
             _gameData = gameData;
             _audioService = audioService;
+            _iconsData = iconsData;
 
             _gameHudWindow.OnNextPressed += OnNextCheckpointPressed;
+        }
+
+        public void Initialize()
+        {
+            _chicken.GetAnimator.GetBehaviour<ChickenAnimationState>().OnAnimationEnd += OnAnimationEnd;
+        }
+
+        private void OnAnimationEnd()
+        {
+            if (_isLose && _checkpointService.GetCurrentCheckpoint != 5)
+                return;
+            
+            _isLose = true;
+            _sequence?.Kill();
+            _chicken.GetAnimator.enabled = false;
+            _chicken.OffsetPosition(true);
+            _chicken.SetSprite(_iconsData.GetChickenSprite(false));
         }
 
         private void OnNextCheckpointPressed()
