@@ -45,6 +45,6 @@ public class Bootstrap : MonoBehaviour
 
         _checkpointService = new CheckpointService(_checkpoints, _gameHudWindow, _gameData);
         _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService);
-        new CarLineController(_gameHudWindow, _carLines, _checkpointService, _gameData);
+        new CarLineController(_gameHudWindow, _carLines, _checkpointService, _gameData, _iconsData);
     }
 }

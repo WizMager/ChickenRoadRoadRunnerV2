@@ -1921,30 +1921,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadLine 2
       objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Size.x
-      value: 1.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Size.y
-      value: 2.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562975619022581442, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 6637614734875226996, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2406,22 +2382,6 @@ PrefabInstance:
     - target: {fileID: 1058355895692328337, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_Name
       value: RoadLine 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562975619022581442, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6637614734875226996, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_RootOrder
@@ -3352,22 +3312,6 @@ PrefabInstance:
     - target: {fileID: 1058355895692328337, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_Name
       value: RoadLine 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562975619022581442, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6637614734875226996, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_RootOrder
@@ -5728,30 +5672,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadLine 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Size.x
-      value: 1.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Size.y
-      value: 2.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562975619022581442, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 6637614734875226996, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -5824,30 +5744,6 @@ PrefabInstance:
     - target: {fileID: 1058355895692328337, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_Name
       value: RoadLine 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Size.x
-      value: 2.88
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Size.y
-      value: 5.08
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562975619022581442, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6637614734875226996, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_RootOrder
@@ -6115,30 +6011,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadLine 4
       objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Size.x
-      value: 1.12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Size.y
-      value: 1.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562975619022581442, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 6637614734875226996, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -6288,22 +6160,6 @@ PrefabInstance:
     - target: {fileID: 1058355895692328337, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_Name
       value: RoadLine 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1186379383195633142, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1562975619022581442, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6637614734875226996, guid: 63dffa65a72e64340850e27f9e6f85c8, type: 3}
       propertyPath: m_RootOrder

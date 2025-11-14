@@ -22,7 +22,25 @@ namespace Views
         
         public void StartCar(float time, Sprite carIcon)
         {
+            if (_car == null)
+            {
+                return;
+            }
             
+            if (time <= 0f)
+            {
+                time = 0.01f;
+            }
+            
+            DOTween.Kill(_barrierShadow);
+
+            _car.enabled = true;
+            _car.sprite = carIcon;
+            var position = _car.transform.position;
+            position.y = _startMoveYPosition;
+            _car.transform.position = position;
+            
+            _car.transform.DOMoveY(_stopMoveYPosition, time).SetEase(Ease.Linear);
         }
 
         public void StartBarrier(float time)
