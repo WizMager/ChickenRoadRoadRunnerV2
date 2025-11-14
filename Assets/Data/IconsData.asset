@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3eb66d5c3e824d058823567c8e7761e7, type: 3}
-  m_Name: CarData
+  m_Name: IconsData
   m_EditorClassIdentifier: 
   _cars:
   - {fileID: 21300000, guid: b750eb5a8ce3d6641a0dfb1073f6e021, type: 3}
@@ -19,3 +19,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4a31fb3722b75b040a203edfdabe554d, type: 3}
   - {fileID: 21300000, guid: e9a88ab3afd125346acb749592df70e1, type: 3}
   - {fileID: 21300000, guid: 91fd9c930b0463149939886a22cc3ead, type: 3}
+  _sewerSprites:
+  - {fileID: 21300000, guid: 0b6faeb56bc47f046bcc1f792676a302, type: 3}
+  - {fileID: 21300000, guid: ba685f4617de4ab4180b778053a5d3c4, type: 3}

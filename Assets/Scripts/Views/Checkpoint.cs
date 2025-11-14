@@ -1,5 +1,6 @@
 ﻿using Db;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 
 namespace Views
@@ -7,14 +8,22 @@ namespace Views
     public class Checkpoint : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private GameObject _text;
+        [SerializeField] private CanvasGroup _canvasGroup;
+        [SerializeField] private TMP_Text _text;
 
         private Sequence _sequence;
         private IconsData _iconsData;
+        private GameData _gameData;
 
-        private void Initialize(IconsData iconsData)
+        public void Initialize(
+            IconsData iconsData, 
+            string text,
+            GameData gameData
+        )
         {
             _iconsData = iconsData;
+            _text.text = text;
+            _gameData = gameData;
         }
         
         public void Stay()
@@ -22,12 +31,13 @@ namespace Views
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
 
-            var time = 1f;
+            var time = _gameData.TimeToStepMove;
             _sequence.Append(_spriteRenderer.transform.DORotate(new Vector3(0, 90, 0), time));
             _sequence.Join(DOVirtual.Color(_spriteRenderer.color, new Color(1, 1, 1, 0), time / 3, value =>
             {
                 _spriteRenderer.color = value;
             }));
+            _sequence.Join(_canvasGroup.DOFade(0, time / 3));
         }
 
         public void JumpFrom()

@@ -39,7 +39,13 @@ namespace Ui
 	        _goText.text = GoText;
 	        _reviveText.text = ReviveText;
 	        _balanceValueText.text = BalanceValueText;
+	        
+	        _goNextButton.onClick.AddListener(OnGoPressed);
         }
-        
+
+        private void OnGoPressed()
+        {
+	        OnNextPressed?.Invoke();
+        }
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using Camera;
 using Db;
+using Db.Checkpoint;
 using Move;
 using Services.Audio;
 using Services.Checkpoint;
@@ -21,6 +23,8 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private WinPopupWindow _winPopupWindow;
     //DATA
     [SerializeField] private GameData _gameData;
+    [SerializeField] private IconsData _iconsData;
+    [SerializeField] private CheckpointData _checkpointData;
     //AUDIO
     [SerializeField] private AudioService _audioService;
 
@@ -31,6 +35,12 @@ public class Bootstrap : MonoBehaviour
 
     private void Awake()
     {
-        
+        for (var i = 0; i < _checkpoints.Count; i++)
+        {
+            _checkpoints[i].Initialize(_iconsData, "x" + _checkpointData.GetCheckpointData(i).Multiply.ToString(CultureInfo.InvariantCulture));
+        }
+
+        _checkpointService = new CheckpointService(_checkpoints, _gameHudWindow, _gameData);
+        _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService);
     }
 }

@@ -4,6 +4,7 @@ using DG.Tweening;
 using Services.Audio;
 using Services.Checkpoint;
 using Ui;
+using UnityEngine;
 using Views;
 using ESoundType = Db.Sound.ESoundType;
 
