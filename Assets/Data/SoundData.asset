@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b22a10f1c886fd4a8f50cc27b87a1d5, type: 3}
   m_Name: SoundData
   m_EditorClassIdentifier: 
-  _chickenJump: {fileID: 8300000, guid: ae51dcbdaa16ed44080cf3824292b7b5, type: 3}
-  _carPassing: {fileID: 8300000, guid: 31459ba55272ef4478c3286741be7fea, type: 3}
-  _carStop: {fileID: 8300000, guid: 75a3ce644e6f2ed4da035b5afaa6c734, type: 3}
-  _coinShuffle: {fileID: 8300000, guid: af313fbc3f0f4864796974966aff3495, type: 3}
-  _winPopup: {fileID: 8300000, guid: eba5cff12b802a946a83fb0b29d8b3dd, type: 3}
+  _sounds:
+  - Type: 0
+    Clip: {fileID: 0}

@@ -80,6 +80,7 @@ namespace Views
             DOTween.Kill(_barrierShadow);
 
             _car.enabled = true;
+            _car.sortingOrder = 21;
             _car.sprite = carIcon;
             var position = _car.transform.position;
             position.y = _startMoveYPosition;

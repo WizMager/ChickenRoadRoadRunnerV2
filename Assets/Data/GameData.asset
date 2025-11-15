@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timeToStepMove: 0.85
   _carDriveTimeBeforeBarrier: 0.2
-  _carDriveTimeFullPath: 1.6
+  _carDriveTimeFullPath: 2
   _loseAfterCheckpoint: 4
   _reviveScaleTime: 0.6
   _carSpawnChancePercent: 70
