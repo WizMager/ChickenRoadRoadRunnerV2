@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Db;
+using Db.Checkpoint;
 using DG.Tweening;
 using Services.Checkpoint;
 using UnityEngine;
@@ -23,6 +24,7 @@ namespace Ui
         [SerializeField] private TMP_Text _withdrawText;
         [SerializeField] private TMP_Text _goText;
         [SerializeField] private TMP_Text _reviveText;
+        [SerializeField] private TMP_Text _tutorialArrowText;
         [SerializeField] private Image _reviveTutorArrow;
         [SerializeField] private Image _reviveHeartImage;
         
@@ -39,19 +41,24 @@ namespace Ui
 		[LunaPlaygroundField("Revive", 3, "Game HUD Window")]
 		public string ReviveText;
 		
-		[LunaPlaygroundField("Balance value", 3, "Game HUD Window")]
+		[LunaPlaygroundField("Balance value", 4, "Game HUD Window")]
 		public string BalanceValueText;
+		
+		[LunaPlaygroundField("Tutorial arrow text", 5, "Game HUD Window")]
+		public string TutorialArrowText;
 
 		private UiData _uiData;
 		private ICheckpointService _checkpointService;
 		private GameData _gameData;
 		private Chicken _chicken;
 		private IconsData _iconsData;
+		private CheckpointData _checkpointData;
 		
         private Tween _arrowPulseTween;
         private Sequence _arrowSequence;
         private Vector2 _arrowStartAnchoredPosition;
         private bool _arrowStartCaptured;
+        private int _currentScore;
 
         private float ArrowFadeDuration => _uiData != null ? _uiData.ReviveArrowFadeDuration : 0.25f;
         private float ArrowPulseDuration => _uiData != null ? _uiData.ReviveArrowPulseDuration : 0.6f;
@@ -66,7 +73,8 @@ namespace Ui
 	        ICheckpointService checkpointService,
 	        GameData gameData,
 	        Chicken chicken,
-	        IconsData iconsData
+	        IconsData iconsData,
+	        CheckpointData checkpointData
 	    )
         {
             _uiData = uiData;
@@ -74,6 +82,7 @@ namespace Ui
             _gameData = gameData;
             _chicken = chicken;
             _iconsData = iconsData;
+            _checkpointData = checkpointData;
         }
         
         private void Awake()
@@ -82,6 +91,7 @@ namespace Ui
 	        _goText.text = GoText;
 	        _reviveText.text = ReviveText;
 	        _balanceValueText.text = BalanceValueText;
+	        _tutorialArrowText.text = TutorialArrowText;
 	        
 	        _goNextButton.onClick.AddListener(OnGoPressed);
 	        _reviveButton.onClick.AddListener(OnRevivePressed);
@@ -114,14 +124,47 @@ namespace Ui
 	        IEnumerator WaitEndJump()
 	        {
 		        yield return new WaitForSeconds(_gameData.TimeToStepMove);
+		        AddScore();
 		        
 		        _goNextButton.interactable = true;
 	        }
         }
 
+        private void AddScore()
+        {
+	        var currentCheckpoint = _checkpointService.GetCurrentCheckpoint;
+	        var checkpointData = _checkpointData.GetCheckpointData(currentCheckpoint);
+
+	        DOVirtual.Int(_currentScore, checkpointData.Score, 0.5f, value =>
+	        {
+		        _balanceText.text = $"{value}.00";
+	        }).OnComplete(() =>
+	        {
+		        _currentScore = checkpointData.Score;
+	        });
+        }
+
+        public void LoseScore()
+        {
+	        DOVirtual.Int(_currentScore, 0, 0.5f, value =>
+	        {
+		        _balanceText.text = $"{value}.00";
+	        });
+        }
+
+        private void RestoreScore()
+        {
+	        DOVirtual.Int(0, _currentScore, 0.5f, value =>
+	        {
+		        _balanceText.text = $"{value}.00";
+	        });
+        }
+        
         private void OnRevivePressed()
         {
 	        _reviveButton.interactable = false;
+	        
+	        RestoreScore();
 	        
 	        OnRevivePress?.Invoke();
 	        StopArrowAnimation();
@@ -202,6 +245,7 @@ namespace Ui
 	        }
 
 	        _reviveTutorArrow.gameObject.SetActive(isVisible);
+	        _tutorialArrowText.enabled = true;
 	        var color = _reviveTutorArrow.color;
 	        color.a = alphaOverride >= 0f ? alphaOverride : isVisible ? color.a : 0f;
 	        _reviveTutorArrow.color = color;

@@ -1,5 +1,6 @@
 using Db;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils;
@@ -14,7 +15,20 @@ namespace Ui
         [SerializeField] private Image _heartImage;
         [SerializeField] private RectTransform _heartTargetPoint;
         [SerializeField] private RectTransform _heartHomePoint;
+        [SerializeField] private TMP_Text _dailyBonusFirstText;
+        [SerializeField] private TMP_Text _dailyBonusSecondText;
+        [SerializeField] private TMP_Text _getText;
+        [SerializeField] private Button _getButton;
 
+        [LunaPlaygroundField("Title 1 text", 1, "Minigame Window")]
+        public string DailyBonusFirstText;
+        
+        [LunaPlaygroundField("Title 2 text", 1, "Minigame Window")]
+        public string DailyBonusSecondText;
+        
+        [LunaPlaygroundField("Get text", 2, "Minigame Window")]
+        public string GetText;
+        
         private UiData _uiData;
         private Sequence _contentSequence;
         private Sequence _heartSequence;
@@ -23,10 +37,18 @@ namespace Ui
         {
             _uiData = uiData;
         }
-        
+
+        private void Awake()
+        {
+            _dailyBonusFirstText.text = DailyBonusFirstText;
+            _dailyBonusSecondText.text = DailyBonusSecondText;
+            _getText.text = GetText;
+        }
+
         private void Start()
         {
             _animator.GetBehaviour<WheelSpinAnimationSignal>().OnSignal += OnWheelSpinAnimationSignal;
+            _getButton.onClick.AddListener(OnGetBonus);
 
             _canvasGroup.blocksRaycasts = true;
             PrepareState();
@@ -86,10 +108,15 @@ namespace Ui
 
             _contentSequence.OnComplete(() =>
             {
-                _animator.SetTrigger("Play");
+                _getButton.interactable = true;
             });
         }
 
+        private void OnGetBonus()
+        {
+            _animator.SetTrigger("Play");
+        }
+        
         private void MoveHeartToWindow()
         {
             if (_heartImage == null || _heartTargetPoint == null || _heartHomePoint == null)

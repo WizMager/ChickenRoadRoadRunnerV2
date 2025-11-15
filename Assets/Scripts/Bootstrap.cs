@@ -48,7 +48,7 @@ public class Bootstrap : MonoBehaviour
         _carLineController = new CarLineController(_gameHudWindow, _carLines, _checkpointService, _gameData, _iconsData);
         
         _minigamePopupWindow.Initialize(_uiData);
-        _gameHudWindow.Initialize(_uiData, _checkpointService, _gameData, _chicken, _iconsData);
+        _gameHudWindow.Initialize(_uiData, _checkpointService, _gameData, _chicken, _iconsData, _checkpointData);
         _winPopupWindow.Initialize(_chickenMove, _gameHudWindow);
     }
 

@@ -68,6 +68,8 @@ namespace Move
 
         private IEnumerator WaitAndStartTutorial()
         {
+            _gameHudWindow.LoseScore();
+            
             yield return new WaitForSeconds(1f);
             
             _gameHudWindow.ShowReviveTutor();
@@ -90,18 +92,6 @@ namespace Move
             _sequence.Append(_chicken.transform.DOMoveX(movePosition.x, stepDuration));
             _sequence.Join(_chicken.transform.DOMoveY(movePosition.y + 1, stepDuration / 2));
             _sequence.Insert(stepDuration / 2, _chicken.transform.DOMoveY(movePosition.y, stepDuration / 2));
-        }
-
-        public void RevertJump()
-        {
-            _sequence?.Kill();
-            _sequence = DOTween.Sequence();
-
-            var stepDuration = _gameData.TimeToStepMove;
-            var movePosition = _checkpointService.GetCurrentCheckpointPosition;
-            
-            _sequence.Append(_chicken.transform.DOMoveX(movePosition.x, stepDuration / 3 * 2));
-            _sequence.Join(_chicken.transform.DOMoveY(movePosition.y, stepDuration / 3 * 2));
         }
 
         private void OnLastCheckpointReached()
