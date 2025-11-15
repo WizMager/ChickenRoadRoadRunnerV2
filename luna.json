@@ -1,8 +1,8 @@
 {
     "version": "6.4.0",
     "projectId": "34fe019aa2164354d8eb40e86a7934ba",
-    "applicationID": 34434,
-    "creativeName": "English",
+    "applicationID": 34511,
+    "creativeName": "SPANISH",
     "pgServer": "EU",
     "window": {
         "‐′": true
@@ -230,8 +230,8 @@
                         "name": "Assets/Textures/Environment/T_GameField.png"
                     },
                     {
-                        "maxWidth": 512,
-                        "maxHeight": 512,
+                        "maxWidth": 256,
+                        "maxHeight": 256,
                         "format": "png32",
                         "compression": "none",
                         "quality": 65,
@@ -240,8 +240,8 @@
                         "name": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset"
                     },
                     {
-                        "maxWidth": 512,
-                        "maxHeight": 512,
+                        "maxWidth": 256,
+                        "maxHeight": 256,
                         "format": "png32",
                         "compression": "none",
                         "quality": 65,
@@ -258,6 +258,26 @@
                         "script": "",
                         "ext": "",
                         "name": "Assets/Fonts/Gilroy-Regular SDF.asset"
+                    },
+                    {
+                        "maxWidth": 256,
+                        "maxHeight": 256,
+                        "format": "png32",
+                        "compression": "none",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/Fonts/fatfrank SDF.asset"
+                    },
+                    {
+                        "maxWidth": 1024,
+                        "maxHeight": 1024,
+                        "format": "png32",
+                        "compression": "quantSize",
+                        "quality": 65,
+                        "script": "",
+                        "ext": "",
+                        "name": "Assets/Textures/Environment/road/All_road.png"
                     }
                 ]
             },

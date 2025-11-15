@@ -157,3 +157,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _threshold: 0.73
+  _spinStartThreshold: 0.05
+  _spinEndThreshold: 0.75

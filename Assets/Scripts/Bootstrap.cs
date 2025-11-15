@@ -4,6 +4,7 @@ using Camera;
 using CarLine;
 using Db;
 using Db.Checkpoint;
+using Db.Sound;
 using Move;
 using Services.Audio;
 using Services.Checkpoint;
@@ -28,6 +29,7 @@ public class Bootstrap : MonoBehaviour
     [SerializeField] private IconsData _iconsData;
     [SerializeField] private CheckpointData _checkpointData;
     [SerializeField] private UiData _uiData;
+    [SerializeField] private SoundData _soundData;
     
     [SerializeField] private AudioService _audioService;
     [SerializeField] private CameraFollow _cameraFollow;
@@ -47,9 +49,10 @@ public class Bootstrap : MonoBehaviour
         _chickenMove = new ChickenMove(_gameHudWindow, _checkpointService, _chicken, _gameData, _audioService, _iconsData);
         _carLineController = new CarLineController(_gameHudWindow, _carLines, _checkpointService, _gameData, _iconsData);
         
-        _minigamePopupWindow.Initialize(_uiData);
+        _minigamePopupWindow.Initialize(_uiData, _audioService);
         _gameHudWindow.Initialize(_uiData, _checkpointService, _gameData, _chicken, _iconsData, _checkpointData);
-        _winPopupWindow.Initialize(_chickenMove, _gameHudWindow);
+        _winPopupWindow.Initialize(_chickenMove, _gameHudWindow, _audioService);
+        _audioService.Initialize(_soundData);
     }
 
     private void Start()

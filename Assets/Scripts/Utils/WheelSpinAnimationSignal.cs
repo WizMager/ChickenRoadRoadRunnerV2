@@ -6,29 +6,42 @@ namespace Utils
 	public class WheelSpinAnimationSignal : StateMachineBehaviour
 	{
 		public Action OnSignal;
+		public Action OnSpinStart;
+		public Action OnSpinEnd;
 
 		[Range(0f, 1f)]
 		[SerializeField] private float _threshold = 0.9f;
+		
+		[Range(0f, 1f)]
+		[SerializeField] private float _spinStartThreshold = 0.3f;
+		
+		[Range(0f, 1f)]
+		[SerializeField] private float _spinEndThreshold = 0.6f;
 
 		private bool _isRaised;
-
-		public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-		{
-			_isRaised = false;
-		}
+		private bool _isSpinStart;
+		private bool _isSpinEnd;
+		
 
 		public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 		{
-			if (_isRaised || stateInfo.normalizedTime < _threshold)
-				return;
+			if (!_isRaised && stateInfo.normalizedTime >= _threshold)
+			{
+				_isRaised = true;
+				OnSignal?.Invoke();
+			}
 
-			_isRaised = true;
-			OnSignal?.Invoke();
-		}
-
-		public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-		{
-			_isRaised = false;
+			if (!_isSpinEnd && stateInfo.normalizedTime >= _spinEndThreshold)
+			{
+				_isSpinEnd = true;
+				OnSpinEnd?.Invoke();
+			}
+			
+			if (!_isSpinStart && stateInfo.normalizedTime >= _spinStartThreshold)
+			{
+				_isSpinStart = true;
+				OnSpinStart?.Invoke();
+			}
 		}
 	}
 }

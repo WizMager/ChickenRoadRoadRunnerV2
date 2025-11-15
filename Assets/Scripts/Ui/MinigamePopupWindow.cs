@@ -1,5 +1,7 @@
 using Db;
+using Db.Sound;
 using DG.Tweening;
+using Services.Audio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,12 +32,18 @@ namespace Ui
         public string GetText;
         
         private UiData _uiData;
+        private AudioService _audioService;
         private Sequence _contentSequence;
         private Sequence _heartSequence;
+        private bool _isSpinStarted;
 
-        public void Initialize(UiData uiData)
+        public void Initialize(
+            UiData uiData,
+            AudioService audioService
+        )
         {
             _uiData = uiData;
+            _audioService = audioService;
         }
 
         private void Awake()
@@ -47,12 +55,31 @@ namespace Ui
 
         private void Start()
         {
-            _animator.GetBehaviour<WheelSpinAnimationSignal>().OnSignal += OnWheelSpinAnimationSignal;
+            var behaviour = _animator.GetBehaviour<WheelSpinAnimationSignal>();
+            behaviour.OnSignal += OnWheelSpinAnimationSignal;
+            behaviour.OnSpinStart += OnWheelSpinStart;
+            behaviour.OnSpinEnd += OnWheelSpinEnd;
+            
             _getButton.onClick.AddListener(OnGetBonus);
 
             _canvasGroup.blocksRaycasts = true;
             PrepareState();
             PlayShowAnimation();
+        }
+        
+        private void OnWheelSpinStart()
+        {
+            if (_isSpinStarted)
+                return;
+
+            _isSpinStarted = true;
+
+            
+        }
+
+        private void OnWheelSpinEnd()
+        {
+            _audioService.StopSound();
         }
 
         private void OnWheelSpinAnimationSignal()
@@ -114,6 +141,7 @@ namespace Ui
 
         private void OnGetBonus()
         {
+            _audioService.PlaySound(ESoundType.Wheel);
             _animator.SetTrigger("Play");
         }
         

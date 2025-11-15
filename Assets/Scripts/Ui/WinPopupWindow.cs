@@ -1,6 +1,7 @@
-using System.Collections;
+using Db.Sound;
 using DG.Tweening;
 using Move;
+using Services.Audio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,7 @@ namespace Ui
 {
 	public class WinPopupWindow : MonoBehaviour
 	{
+		private static readonly int _play = Animator.StringToHash("Play");
 		[SerializeField] private CanvasGroup _winnerCanvasGroup;
 		[SerializeField] private Animator _notifyAnimator;
 		[SerializeField] private Animator _confettiAnimator;
@@ -18,8 +20,6 @@ namespace Ui
 		[SerializeField] private Image _notifyImage;
 		
 		[SerializeField] private TMP_Text _winnerText;
-		[SerializeField] private string _startTrigger = "Play";
-		[SerializeField] private float _confettiAnimationDuration = 2f;
 		[SerializeField] private float _windowSwingAngle = 15f;
 		[SerializeField] private float _windowSwingDuration = 0.5f;
 		
@@ -29,14 +29,17 @@ namespace Ui
 		private IChickenMove _chickenMove;
 		private GameHudWindow _gameHudWindow;
 		private Coroutine _winSequenceCoroutine;
+		private AudioService _audioService;
 
 		public void Initialize(
 			IChickenMove chickenMove, 
-			GameHudWindow gameHudWindow
+			GameHudWindow gameHudWindow,
+			AudioService audioService
 		)
 		{
 			_chickenMove = chickenMove;
 			_gameHudWindow = gameHudWindow;
+			_audioService = audioService;
 
 			_gameHudWindow.OnWithdrawPress += OnWithdrawPressed;
 			_chickenMove.OnFinalMoveEnd += OnFinalMoveEnded;
@@ -76,24 +79,24 @@ namespace Ui
 
 		private void PlayConfetti()
 		{
-			if (_confettiAnimator == null || string.IsNullOrEmpty(_startTrigger))
+			if (_confettiAnimator == null)
 			{
 				return;
 			}
-
-			_confettiAnimator.ResetTrigger(_startTrigger);
-			_confettiAnimator.SetTrigger(_startTrigger);
+			
+			_audioService.PlayOneShotSound(ESoundType.Win);
+			
+			_confettiAnimator.SetTrigger(_play);
 		}
 
 		private void PlayFlash()
 		{
-			if (_flashAnimator == null || string.IsNullOrEmpty(_startTrigger))
+			if (_flashAnimator == null)
 			{
 				return;
 			}
-
-			_flashAnimator.ResetTrigger(_startTrigger);
-			_flashAnimator.SetTrigger(_startTrigger);
+			
+			_flashAnimator.SetTrigger(_play);
 		}
 
 		private void ShowWindowContainer()
@@ -124,15 +127,15 @@ namespace Ui
 		
 		private void PlayNotification()
 		{
-			if (_notifyAnimator == null || string.IsNullOrEmpty(_startTrigger))
+			if (_notifyAnimator == null)
 			{
 				return;
 			}
 
+			_audioService?.PlayOneShotSound(ESoundType.Notify);
 			_notifyImage.enabled = true;
 			
-			_notifyAnimator.ResetTrigger(_startTrigger);
-			_notifyAnimator.SetTrigger(_startTrigger);
+			_notifyAnimator.SetTrigger(_play);
 		}
 	}
 }

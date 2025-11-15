@@ -48,6 +48,7 @@ namespace Move
 
         public void Initialize()
         {
+            
             _chicken.GetAnimator.GetBehaviour<ChickenAnimationState>().OnAnimationEnd += OnAnimationEnd;
         }
 
@@ -55,13 +56,14 @@ namespace Move
         {
             if (!_isLose && _checkpointService.GetCurrentCheckpoint == _gameData.LoseAfterCheckpoint)
             {
-                
                 _isLose = true;
                 _sequence?.Kill();
                 _chicken.GetAnimator.enabled = false;
                 _chicken.OffsetPosition(true);
                 _chicken.SetSprite(_iconsData.GetChickenSprite(false));
-
+                
+                _audioService.PlayOneShotSound(ESoundType.Lose);
+                _audioService.PlayOneShotSound(ESoundType.ChickenCrush);
                 _gameHudWindow.StartCoroutine(WaitAndStartTutorial());
             }
         }
@@ -80,8 +82,9 @@ namespace Move
             if (_checkpointService.IsLastCheckpoint)
                 return;
             
+            _audioService?.PlayOneShotSound(ESoundType.ChickenJump);
+            
             _chicken.StartJumpAnimation();
-            _audioService?.PlaySound(ESoundType.ChickenJump);
             
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
@@ -96,8 +99,9 @@ namespace Move
 
         private void OnLastCheckpointReached()
         {
+            _audioService?.PlayOneShotSound(ESoundType.ChickenJump);
+            
             _chicken.StartJumpAnimation();
-            _audioService?.PlaySound(ESoundType.ChickenJump);
             
             _sequence?.Kill();
             _sequence = DOTween.Sequence();
@@ -111,10 +115,21 @@ namespace Move
             _sequence.OnComplete(() =>
             {
                 _chicken.GetAnimator.SetTrigger("InfinityJump");
+                _gameHudWindow.StartCoroutine(InfinityJumpSound());
                 OnFinalMoveEnd?.Invoke();
             });
         }
 
+        private IEnumerator InfinityJumpSound()
+        {
+            while (true)
+            {
+                _audioService.PlayOneShotSound(ESoundType.ChickenJump);
+                
+                yield return new WaitForSeconds(0.84f);
+            }
+        }
+        
         public void Dispose()
         {
             _gameHudWindow.OnNextPressed -= OnNextCheckpointPressed;
