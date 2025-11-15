@@ -18,7 +18,6 @@ namespace Services.Audio
 		
 		private void Start()
 		{
-			return;
 			if (_backgroundMusicSource == null || _soundData == null)
 				return;
 			

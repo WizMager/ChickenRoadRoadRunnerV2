@@ -27,6 +27,7 @@ namespace Ui
         [SerializeField] private TMP_Text _tutorialArrowText;
         [SerializeField] private Image _reviveTutorArrow;
         [SerializeField] private Image _reviveHeartImage;
+        [SerializeField] private RectTransform _bottomContainer;
         
 		//Balance
 		[SerializeField] private TextMeshProUGUI _balanceText;
@@ -103,6 +104,8 @@ namespace Ui
 		        _arrowStartCaptured = true;
 		        SetArrowVisible(false);
 	        }
+	        
+	        AdjustForAspectRatio();
         }
 
         private void OnGoPressed()
@@ -266,6 +269,19 @@ namespace Ui
 	        {
 		        _goNextButton.interactable = true;
 	        });
+        }
+        
+        private void AdjustForAspectRatio()
+        {
+	        if (_bottomContainer == null)
+		        return;
+
+	        if (Screen.width <= Screen.height) 
+		        return;
+			
+	        var scale = _bottomContainer.localScale;
+	        scale.y = 0.7f;
+	        _bottomContainer.localScale = scale;
         }
     }
 }

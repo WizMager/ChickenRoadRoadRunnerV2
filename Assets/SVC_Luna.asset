@@ -338,7 +338,7 @@ MonoBehaviour:
   _usedByLunaBuild: []
   _includedShaderVariants: []
   _excludedShaderVariants: []
-  version: 190
+  version: 263
   _shaderParsedShaders:
   - ParsedSubShaders:
     - Index: 0
@@ -474,7 +474,7 @@ MonoBehaviour:
       Passes:
       - Shader: {fileID: 17, guid: 0000000000000000e000000000000000, type: 0}
         ShaderVariants:
-        - ShaderCompilerPlatform: 5
+        - ShaderCompilerPlatform: 0
           NoShaderVariant: 0
           VertexProgram: "\r\n                    #version 100\r\n                   
             // This is a VP stub\r\n                    attribute vec3 _glesVertex;\r\n                   
@@ -498,7 +498,7 @@ MonoBehaviour:
         KeywordsMinimalCardinality: 0
         ContainsInvalidVariant: 0
         VariantStructures:
-        - shaderCompilerPlatform: 5
+        - shaderCompilerPlatform: 0
           shader: {fileID: 17, guid: 0000000000000000e000000000000000, type: 0}
           passType: 0
           passId: 0
@@ -524,7 +524,7 @@ MonoBehaviour:
     fallbackShader: {fileID: 0}
     CompilationErrors: []
     Variants:
-    - shaderCompilerPlatform: 5
+    - shaderCompilerPlatform: 0
       shader: {fileID: 17, guid: 0000000000000000e000000000000000, type: 0}
       passType: 0
       passId: 0

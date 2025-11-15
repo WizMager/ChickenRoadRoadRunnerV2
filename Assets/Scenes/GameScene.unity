@@ -1966,6 +1966,7 @@ MonoBehaviour:
   _tutorialArrowText: {fileID: 122263474}
   _reviveTutorArrow: {fileID: 274661344}
   _reviveHeartImage: {fileID: 1647921578}
+  _bottomContainer: {fileID: 1601902048}
   _balanceText: {fileID: 1153155216}
   _balanceValueText: {fileID: 1416132149}
   WithdrawText: COBRAR
@@ -4101,8 +4102,8 @@ MonoBehaviour:
   _flashAnimator: {fileID: 1954043085}
   _windowContainer: {fileID: 749463716}
   _notifyImage: {fileID: 1963089160}
+  _notifyContainer: {fileID: 257003100}
   _winnerText: {fileID: 1781430849}
-  _confettiAnimationDuration: 2
   _windowSwingAngle: 15
   _windowSwingDuration: 0.5
   WinnerText: "\xA1gana!"
@@ -4579,7 +4580,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 938685044}
   m_Father: {fileID: 1867131298}

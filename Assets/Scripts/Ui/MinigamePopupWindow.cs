@@ -57,7 +57,6 @@ namespace Ui
         {
             var behaviour = _animator.GetBehaviour<WheelSpinAnimationSignal>();
             behaviour.OnSignal += OnWheelSpinAnimationSignal;
-            behaviour.OnSpinStart += OnWheelSpinStart;
             behaviour.OnSpinEnd += OnWheelSpinEnd;
             
             _getButton.onClick.AddListener(OnGetBonus);
@@ -65,16 +64,6 @@ namespace Ui
             _canvasGroup.blocksRaycasts = true;
             PrepareState();
             PlayShowAnimation();
-        }
-        
-        private void OnWheelSpinStart()
-        {
-            if (_isSpinStarted)
-                return;
-
-            _isSpinStarted = true;
-
-            
         }
 
         private void OnWheelSpinEnd()

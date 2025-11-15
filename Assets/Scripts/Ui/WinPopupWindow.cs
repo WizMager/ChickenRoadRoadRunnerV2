@@ -18,6 +18,7 @@ namespace Ui
 		[SerializeField] private Animator _flashAnimator;
 		[SerializeField] private RectTransform _windowContainer;
 		[SerializeField] private Image _notifyImage;
+		[SerializeField] private RectTransform _notifyContainer;
 		
 		[SerializeField] private TMP_Text _winnerText;
 		[SerializeField] private float _windowSwingAngle = 15f;
@@ -48,6 +49,7 @@ namespace Ui
 		private void Awake()
 		{
 			_winnerText.text = WinnerText;
+			AdjustForAspectRatio();
 		}
 
 		private void Start()
@@ -136,6 +138,19 @@ namespace Ui
 			_notifyImage.enabled = true;
 			
 			_notifyAnimator.SetTrigger(_play);
+		}
+		
+		private void AdjustForAspectRatio()
+		{
+			if (_notifyImage == null)
+				return;
+
+			if (Screen.width <= Screen.height) 
+				return;
+
+			var pos = _notifyContainer.anchoredPosition;
+			pos.y = 0;
+			_notifyContainer.anchoredPosition = pos;
 		}
 	}
 }
