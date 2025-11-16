@@ -19,6 +19,8 @@ namespace Ui
 		[SerializeField] private RectTransform _windowContainer;
 		[SerializeField] private Image _notifyImage;
 		[SerializeField] private RectTransform _notifyContainer;
+		[SerializeField] private Button _cashOutButton;
+		[SerializeField] private TMP_Text _cashOutText;
 		
 		[SerializeField] private TMP_Text _winnerText;
 		[SerializeField] private float _windowSwingAngle = 15f;
@@ -26,6 +28,9 @@ namespace Ui
 		
 		[LunaPlaygroundField("Winner", 1, "Win Popup Window")]
 		public string WinnerText;
+		
+		[LunaPlaygroundField("CashOut", 2, "Win Popup Window")]
+		public string CashoutText;
 		
 		private IChickenMove _chickenMove;
 		private GameHudWindow _gameHudWindow;
@@ -43,12 +48,14 @@ namespace Ui
 			_audioService = audioService;
 
 			_gameHudWindow.OnWithdrawPress += OnWithdrawPressed;
+			_cashOutButton.onClick.AddListener(OnWithdrawPressed);
 			_chickenMove.OnFinalMoveEnd += OnFinalMoveEnded;
 		}
 
 		private void Awake()
 		{
 			_winnerText.text = WinnerText;
+			_cashOutText.text = CashoutText;
 			AdjustForAspectRatio();
 		}
 

@@ -21,6 +21,7 @@ namespace Ui
         [SerializeField] private TMP_Text _dailyBonusSecondText;
         [SerializeField] private TMP_Text _getText;
         [SerializeField] private Button _getButton;
+        [SerializeField] private RectTransform _wheelContainer;
 
         [LunaPlaygroundField("Title 1 text", 1, "Minigame Window")]
         public string DailyBonusFirstText;
@@ -51,6 +52,7 @@ namespace Ui
             _dailyBonusFirstText.text = DailyBonusFirstText;
             _dailyBonusSecondText.text = DailyBonusSecondText;
             _getText.text = GetText;
+            AdjustForAspectRatio();
         }
 
         private void Start()
@@ -170,6 +172,19 @@ namespace Ui
                     gameObject.SetActive(false);
                     _canvasGroup.blocksRaycasts = false;
                 });
+        }
+        
+        private void AdjustForAspectRatio()
+        {
+            if (_wheelContainer == null)
+                return;
+            
+            if (Screen.width <= Screen.height) 
+                return;
+            
+            _wheelContainer.sizeDelta = new Vector2(700f, _wheelContainer.rect.height);
+            _wheelContainer.offsetMax = new Vector2(_wheelContainer.offsetMax.x, -25f);
+            _wheelContainer.offsetMin = new Vector2(_wheelContainer.offsetMin.x, 25f);
         }
     }
 }
