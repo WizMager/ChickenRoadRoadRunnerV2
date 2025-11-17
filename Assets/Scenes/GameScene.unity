@@ -2504,7 +2504,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749463715}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2875,12 +2875,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 96.75
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 150
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2911,7 +2911,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 23.23494, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3319,11 +3319,11 @@ RectTransform:
   m_Father: {fileID: 1499468243}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -8.5, y: -32}
-  m_SizeDelta: {x: -137, y: 82}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -130, y: -100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &990964011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4323,7 +4323,7 @@ MonoBehaviour:
   _windowSwingAngle: 15
   _windowSwingDuration: 0.5
   WinnerText: "\xA1gana!"
-  CashoutText: COBRAR
+  CashoutText: retirar dinero
 --- !u!1 &1416132147
 GameObject:
   m_ObjectHideFlags: 0
@@ -5117,8 +5117,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -0.000030517578}
-  m_SizeDelta: {x: 282.88, y: 84}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 695.69, y: 170}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1660944622
 MonoBehaviour:
