@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_AnchoredPosition: {x: 0.00024414062, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &28209608
@@ -1631,7 +1631,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407013768}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -4273,17 +4273,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _winnerCanvasGroup: {fileID: 749463717}
-  _notifyAnimator: {fileID: 0}
   _confettiAnimator: {fileID: 28209608}
   _flashAnimator: {fileID: 1954043085}
   _windowContainer: {fileID: 749463716}
-  _notifyImage: {fileID: 0}
-  _notifyContainer: {fileID: 0}
   _cashOutButton: {fileID: 1660944622}
   _cashOutText: {fileID: 222287644}
   _winnerText: {fileID: 1781430849}
-  _windowSwingAngle: 15
-  _windowSwingDuration: 0.5
   WinnerText: "\xA1gana!"
   CashoutText: retirar dinero
 --- !u!1 &1416132147
@@ -5648,7 +5643,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 19c6ad3b647cfa6418ae8410f4f7e307, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
