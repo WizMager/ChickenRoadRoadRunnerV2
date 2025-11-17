@@ -182,7 +182,7 @@ namespace Ui
             if (Screen.width <= Screen.height) 
                 return;
             
-            _wheelContainer.sizeDelta = new Vector2(700f, _wheelContainer.rect.height);
+            _wheelContainer.sizeDelta = new Vector2(600f, _wheelContainer.rect.height);
             _wheelContainer.offsetMax = new Vector2(_wheelContainer.offsetMax.x, -25f);
             _wheelContainer.offsetMin = new Vector2(_wheelContainer.offsetMin.x, 25f);
         }
