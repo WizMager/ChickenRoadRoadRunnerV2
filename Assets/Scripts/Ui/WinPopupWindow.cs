@@ -1,5 +1,4 @@
 using Db.Sound;
-using DG.Tweening;
 using Move;
 using Services.Audio;
 using TMPro;
@@ -13,18 +12,13 @@ namespace Ui
 	{
 		private static readonly int _play = Animator.StringToHash("Play");
 		[SerializeField] private CanvasGroup _winnerCanvasGroup;
-		[SerializeField] private Animator _notifyAnimator;
 		[SerializeField] private Animator _confettiAnimator;
 		[SerializeField] private Animator _flashAnimator;
 		[SerializeField] private RectTransform _windowContainer;
-		[SerializeField] private Image _notifyImage;
-		[SerializeField] private RectTransform _notifyContainer;
 		[SerializeField] private Button _cashOutButton;
 		[SerializeField] private TMP_Text _cashOutText;
 		
 		[SerializeField] private TMP_Text _winnerText;
-		[SerializeField] private float _windowSwingAngle = 15f;
-		[SerializeField] private float _windowSwingDuration = 0.5f;
 		
 		[LunaPlaygroundField("Winner", 1, "Win Popup Window")]
 		public string WinnerText;
@@ -55,7 +49,6 @@ namespace Ui
 		{
 			_winnerText.text = WinnerText;
 			_cashOutText.text = CashoutText;
-			AdjustForAspectRatio();
 		}
 
 		private void Start()
@@ -68,7 +61,6 @@ namespace Ui
 		{
 			PlayFlash();
 			ShowWindowContainer();
-			PlayNotification();
 		}
 		
 		private void OnWithdrawPressed()
@@ -123,43 +115,6 @@ namespace Ui
 			}
 
 			_windowContainer.localRotation = Quaternion.identity;
-			
-			// var sequence = DOTween.Sequence();
-			// sequence.Append(_windowContainer.DOLocalRotate(new Vector3(0f, 0f, -_windowSwingAngle), _windowSwingDuration)
-			// 	.SetEase(Ease.InOutSine));
-			// sequence.Append(_windowContainer.DOLocalRotate(Vector3.zero, _windowSwingDuration)
-			// 	.SetEase(Ease.InOutSine));
-			// sequence.Append(_windowContainer.DOLocalRotate(new Vector3(0f, 0f, _windowSwingAngle), _windowSwingDuration)
-			// 	.SetEase(Ease.InOutSine));
-			// sequence.Append(_windowContainer.DOLocalRotate(Vector3.zero, _windowSwingDuration)
-			// 	.SetEase(Ease.InOutSine));
-			// sequence.SetLoops(-1, LoopType.Restart);
-		}
-		
-		private void PlayNotification()
-		{
-			if (_notifyAnimator == null)
-			{
-				return;
-			}
-
-			_audioService?.PlayOneShotSound(ESoundType.Notify);
-			_notifyImage.enabled = true;
-			
-			_notifyAnimator.SetTrigger(_play);
-		}
-		
-		private void AdjustForAspectRatio()
-		{
-			if (_notifyImage == null)
-				return;
-
-			if (Screen.width <= Screen.height) 
-				return;
-
-			var pos = _notifyContainer.anchoredPosition;
-			pos.y = 0;
-			_notifyContainer.anchoredPosition = pos;
 		}
 	}
 }
