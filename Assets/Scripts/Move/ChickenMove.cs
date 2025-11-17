@@ -48,7 +48,6 @@ namespace Move
 
         public void Initialize()
         {
-            
             _chicken.GetAnimator.GetBehaviour<ChickenAnimationState>().OnAnimationEnd += OnAnimationEnd;
         }
 

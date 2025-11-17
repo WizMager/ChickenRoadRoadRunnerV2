@@ -137,7 +137,7 @@ namespace Ui
         {
 	        var currentCheckpoint = _checkpointService.GetCurrentCheckpoint;
 	        var checkpointData = _checkpointData.GetCheckpointData(currentCheckpoint);
-
+	        
 	        DOVirtual.Int(_currentScore, checkpointData.Score, 0.5f, value =>
 	        {
 		        _balanceText.text = $"{value}.00";

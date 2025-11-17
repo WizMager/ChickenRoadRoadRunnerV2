@@ -48,7 +48,6 @@ namespace Ui
 			_audioService = audioService;
 
 			_gameHudWindow.OnWithdrawPress += OnWithdrawPressed;
-			_cashOutButton.onClick.AddListener(OnWithdrawPressed);
 			_chickenMove.OnFinalMoveEnd += OnFinalMoveEnded;
 		}
 
@@ -61,6 +60,7 @@ namespace Ui
 
 		private void Start()
 		{
+			_cashOutButton.onClick.AddListener(OnWithdrawPressed);
 			_confettiAnimator.GetBehaviour<ConfettiAnimationState>().OnSignal += OnConfettiAnimationEnd;
 		}
 
@@ -82,6 +82,8 @@ namespace Ui
 			{
 				return;
 			}
+
+			_winnerCanvasGroup.blocksRaycasts = true;
 			
 			PlayConfetti();
 		}
@@ -122,16 +124,16 @@ namespace Ui
 
 			_windowContainer.localRotation = Quaternion.identity;
 			
-			var sequence = DOTween.Sequence();
-			sequence.Append(_windowContainer.DOLocalRotate(new Vector3(0f, 0f, -_windowSwingAngle), _windowSwingDuration)
-				.SetEase(Ease.InOutSine));
-			sequence.Append(_windowContainer.DOLocalRotate(Vector3.zero, _windowSwingDuration)
-				.SetEase(Ease.InOutSine));
-			sequence.Append(_windowContainer.DOLocalRotate(new Vector3(0f, 0f, _windowSwingAngle), _windowSwingDuration)
-				.SetEase(Ease.InOutSine));
-			sequence.Append(_windowContainer.DOLocalRotate(Vector3.zero, _windowSwingDuration)
-				.SetEase(Ease.InOutSine));
-			sequence.SetLoops(-1, LoopType.Restart);
+			// var sequence = DOTween.Sequence();
+			// sequence.Append(_windowContainer.DOLocalRotate(new Vector3(0f, 0f, -_windowSwingAngle), _windowSwingDuration)
+			// 	.SetEase(Ease.InOutSine));
+			// sequence.Append(_windowContainer.DOLocalRotate(Vector3.zero, _windowSwingDuration)
+			// 	.SetEase(Ease.InOutSine));
+			// sequence.Append(_windowContainer.DOLocalRotate(new Vector3(0f, 0f, _windowSwingAngle), _windowSwingDuration)
+			// 	.SetEase(Ease.InOutSine));
+			// sequence.Append(_windowContainer.DOLocalRotate(Vector3.zero, _windowSwingDuration)
+			// 	.SetEase(Ease.InOutSine));
+			// sequence.SetLoops(-1, LoopType.Restart);
 		}
 		
 		private void PlayNotification()

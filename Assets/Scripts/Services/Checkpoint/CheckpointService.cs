@@ -57,7 +57,7 @@ namespace Services.Checkpoint
 
         private IEnumerator WaitAndNextCheckpoint()
         {
-            yield return new WaitForSeconds(_gameData.TimeToStepMove);
+            yield return new WaitForSeconds(_gameData.TimeToStepMove - 0.05f);
             
             _currentCheckpoint++;
             
