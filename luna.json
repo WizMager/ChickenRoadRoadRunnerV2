@@ -2,7 +2,7 @@
     "version": "6.4.0",
     "projectId": "34fe019aa2164354d8eb40e86a7934ba",
     "applicationID": 34511,
-    "creativeName": "SPANISH",
+    "creativeName": "DUTCH",
     "pgServer": "EU",
     "window": {
         "‐′": true
@@ -81,7 +81,7 @@
             "externalJSLibraries": [],
             "scriptingDefines": [],
             "msbuildVersion": "17.14",
-            "monoVersion": "9.0.10",
+            "monoVersion": "9.0.11",
             "dotnetVersion": ""
         },
         "assets": {
@@ -230,8 +230,8 @@
                         "name": "Assets/Textures/Environment/T_GameField.png"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 512,
+                        "maxHeight": 512,
                         "format": "png32",
                         "compression": "none",
                         "quality": 65,
@@ -240,8 +240,8 @@
                         "name": "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 512,
+                        "maxHeight": 512,
                         "format": "png32",
                         "compression": "none",
                         "quality": 65,
@@ -260,8 +260,8 @@
                         "name": "Assets/Fonts/Gilroy-Regular SDF.asset"
                     },
                     {
-                        "maxWidth": 256,
-                        "maxHeight": 256,
+                        "maxWidth": 512,
+                        "maxHeight": 512,
                         "format": "png32",
                         "compression": "none",
                         "quality": 65,
@@ -270,8 +270,8 @@
                         "name": "Assets/Fonts/fatfrank SDF.asset"
                     },
                     {
-                        "maxWidth": 1024,
-                        "maxHeight": 1024,
+                        "maxWidth": 2048,
+                        "maxHeight": 2048,
                         "format": "png32",
                         "compression": "quantSize",
                         "quality": 65,
@@ -285,8 +285,8 @@
                 "default": {
                     "channels": 1,
                     "startTime": "00:00.000",
-                    "endTime": "00:00.000",
-                    "lengthInSeconds": 0.0,
+                    "endTime": "00:30.000",
+                    "lengthInSeconds": 30.0,
                     "bitrate": 128,
                     "script": "",
                     "ext": ""

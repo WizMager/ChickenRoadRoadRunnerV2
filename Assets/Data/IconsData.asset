@@ -23,5 +23,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 0b6faeb56bc47f046bcc1f792676a302, type: 3}
   - {fileID: 21300000, guid: ba685f4617de4ab4180b778053a5d3c4, type: 3}
   _chickenSprites:
-  - {fileID: 21300000, guid: 363859da27dad2b44a8c9b50d4f79071, type: 3}
-  - {fileID: 21300000, guid: 60b178ce9ee20c141a75b78e3447b894, type: 3}
+  - {fileID: 21300000, guid: 571db62c763508a4d916d4cf6911f7dd, type: 3}
+  - {fileID: 21300000, guid: eaf2ca2e6b645954a9e9cd7dc1d84d55, type: 3}

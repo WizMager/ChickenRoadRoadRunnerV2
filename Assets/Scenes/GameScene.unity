@@ -1620,9 +1620,9 @@ MonoBehaviour:
   _getText: {fileID: 731872098}
   _getButton: {fileID: 532056873}
   _wheelContainer: {fileID: 1890151499}
-  DailyBonusFirstText: Bono
-  DailyBonusSecondText: diario
-  GetText: OBTENER
+  DailyBonusFirstText: Dagelijkse
+  DailyBonusSecondText: bonus
+  GetText: HALEN
 --- !u!225 &407013771
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1631,7 +1631,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 407013768}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2068,11 +2068,11 @@ MonoBehaviour:
   _bottomContainer: {fileID: 1601902048}
   _balanceText: {fileID: 1153155216}
   _balanceValueText: {fileID: 1416132149}
-  WithdrawText: retirar dinero
-  GoText: "\xA1JUGAR!"
-  ReviveText: Vida extra
+  WithdrawText: UITBETALEN
+  GoText: SPELEN!
+  ReviveText: Extra leven
   BalanceValueText: EUR
-  TutorialArrowText: "\xA1Prueba ahora!"
+  TutorialArrowText: Probeer nu!
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -4279,8 +4279,8 @@ MonoBehaviour:
   _cashOutButton: {fileID: 1660944622}
   _cashOutText: {fileID: 222287644}
   _winnerText: {fileID: 1781430849}
-  WinnerText: "\xA1gana!"
-  CashoutText: retirar dinero
+  WinnerText: winnen!
+  CashoutText: UITBETALEN
 --- !u!1 &1416132147
 GameObject:
   m_ObjectHideFlags: 0
@@ -6786,6 +6786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chicken
       objectReference: {fileID: 0}
+    - target: {fileID: 3954064582642841999, guid: f9ae6156d8820f241b58381e44e64675, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 571db62c763508a4d916d4cf6911f7dd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9ae6156d8820f241b58381e44e64675, type: 3}
 --- !u!114 &3954064581655200281 stripped
