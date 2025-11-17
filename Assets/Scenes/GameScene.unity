@@ -2068,7 +2068,7 @@ MonoBehaviour:
   _bottomContainer: {fileID: 1601902048}
   _balanceText: {fileID: 1153155216}
   _balanceValueText: {fileID: 1416132149}
-  WithdrawText: COBRAR
+  WithdrawText: retirar dinero
   GoText: "\xA1JUGAR!"
   ReviveText: Vida extra
   BalanceValueText: EUR
